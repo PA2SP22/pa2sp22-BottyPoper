@@ -1,6 +1,6 @@
 /*
  * Name        : lab_2.cpp
- * Author      : FILL IN
+ * Author      : Charles Clarke
  * Description : Using Arithmetic to finish the functions MakeChange() and
  *               LaunchHumanCannonball()
  */
@@ -56,8 +56,28 @@ int main() {
  */
 void MakeChange(int initial_value, int &quarters, int &dimes, int &nickels,
                 int &pennies) {
-  // CODE HERE
-}
+  // CODE
+  int current_value;
+  
+  for( current_value=25 ; current_value < initial_value; current_value+=25){
+    quarters++;
+    }
+    current_value-=25;
+    
+  for (initial_value+=10 ; current_value < initial_value; current_value+=10){
+    dimes++;
+  }
+   current_value-=10;
+  for (current_value+=5; current_value < initial_value; current_value+=5 ){
+    nickels++;
+  }
+  current_value-=5;
+  for (current_value+=1; current_value < initial_value; current_value+=1 ){
+    pennies++;
+  }
+   current_value-=1;
+ 
+                }
 
 /*
  * Computes the horizontal distance traveled by a human cannonball given an
@@ -74,23 +94,23 @@ double LaunchHumanCannonball(double initial_velocity, double launch_angle) {
   // (1) Convert launch_angle from degrees to radians
   //     [radian_angle = degree_launch_angle * (kPI/180)]
   // CODE HERE
-
+double radian_angle = launch_angle * (M_PI/180);
   // (2) Compute final horizontal/x velocity
   //     [x_velocity = initial_velocity * cos(radian_angle)]
   // CODE HERE
-
+double x_velocity = initial_velocity * cos(radian_angle);
   // (3) Compute final vertical/y velocity
   //     [y_velocity = initial_velocity * sin(radian_angle) * -1]
   // CODE HERE
-
+double y_velocity = initial_velocity * sin(radian_angle) * -1;
   // (4) Compute time of flight 
   //     [flight_time = (y_velocity) * 2 / -9.8]
   // CODE HERE
-
+double flight_time = (y_velocity) * 2 / -9.8;
   // (5) Compute horizontal/x distance travelled
   //     [x_distance = x_velocity * flight_time]
   // CODE HERE
-
+double x_distance = x_velocity * flight_time;
 }
 
 // For testing (DO NOT ALTER)
