@@ -58,26 +58,24 @@ void MakeChange(int initial_value, int &quarters, int &dimes, int &nickels,
                 int &pennies) {
   // CODE
   int current_value;
-  
-  for( current_value=25 ; current_value < initial_value; current_value+=25){
+  quarters = 0, dimes = 0, nickels = 0, pennies = 0;
+  for (current_value = 25 ; current_value < initial_value; current_value+=25) {
     quarters++;
-    }
+     }
     current_value-=25;
-    
-  for (initial_value+=10 ; current_value < initial_value; current_value+=10){
+  for (current_value+=10 ; current_value < initial_value; current_value+=10) {
     dimes++;
   }
-   current_value-=10;
-  for (current_value+=5; current_value < initial_value; current_value+=5 ){
+  current_value-=10;
+  for (current_value+=5 ; current_value < initial_value; current_value+=5) {
     nickels++;
   }
   current_value-=5;
-  for (current_value+=1; current_value < initial_value; current_value+=1 ){
+  for (current_value+=1; current_value <= initial_value; current_value+=1) {
     pennies++;
   }
-   current_value-=1;
- 
-                }
+  current_value-=1;
+  }
 
 /*
  * Computes the horizontal distance traveled by a human cannonball given an
@@ -103,7 +101,7 @@ double x_velocity = initial_velocity * cos(radian_angle);
   //     [y_velocity = initial_velocity * sin(radian_angle) * -1]
   // CODE HERE
 double y_velocity = initial_velocity * sin(radian_angle) * -1;
-  // (4) Compute time of flight 
+  // (4) Compute time of flight
   //     [flight_time = (y_velocity) * 2 / -9.8]
   // CODE HERE
 double flight_time = (y_velocity) * 2 / -9.8;
@@ -111,6 +109,7 @@ double flight_time = (y_velocity) * 2 / -9.8;
   //     [x_distance = x_velocity * flight_time]
   // CODE HERE
 double x_distance = x_velocity * flight_time;
+return x_distance;
 }
 
 // For testing (DO NOT ALTER)
