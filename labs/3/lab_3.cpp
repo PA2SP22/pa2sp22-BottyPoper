@@ -65,7 +65,41 @@ int main() {
  */
 string Goldilocks(string item, int number) {
   // CODE HERE
-}
+  string nagging_complaint;
+  switch (number) {
+    case 1:
+        if (item == "porridge") {
+           nagging_complaint = "too hot";
+        } else if (item == "chair") {
+          nagging_complaint = "too big";
+        } else {
+          nagging_complaint = "too hard";
+          item ="bed";
+        }
+       break;
+    case 2:
+          if (item == "porridge") {
+            nagging_complaint = "too cold";
+            cout <<  nagging_complaint
+            << "ahhh my is nagging complaint empty\n";
+         } else if (item == "chair") {
+          nagging_complaint = "too small";
+          } else {
+            nagging_complaint = "too soft";
+            item == "bed";
+          }
+          break;
+    default:
+      nagging_complaint = "just right";
+      if (!(item == "bed") && !(item == "chair")) {
+            item == "bed";
+      }
+  }
+//  cout <<  nagging_complaint << "ahhh my is nagging complaint empty\n";
+  string output_i_dont_need_this = "This " + item + " is " + nagging_complaint;
+    return output_i_dont_need_this;
+    }
+
 
 /*
  * Compute the outcome of a round of a rock-scissor-paper game. Lowercase or
@@ -82,6 +116,45 @@ string Goldilocks(string item, int number) {
 int RockScissorPaper(char player_one, char player_two) {
   // YOU MUST USE A SWITCH IN THIS FUNCTION
   // CODE HERE
+  player_one = toupper(player_one);
+  player_two = toupper(player_two);
+  switch (player_one) {
+    case('R'):
+      switch (player_two) {
+        case('R'):
+          return 3;
+          break;
+        case('S'):
+          return 1;
+          break;
+        default:
+          return 2;
+      }
+      break;
+    case('S'):
+      switch (player_two) {
+        case('R'):
+          return 2;
+          break;
+        case('S'):
+          return 3;
+          break;
+        default:
+          return 1;
+      }
+      break;
+    default:
+      switch (player_two) {
+          case('R'):
+            return 1;
+            break;
+          case('S'):
+            return 2;
+            break;
+          default:
+          return 3;
+      }
+  }
 }
 
 /*
@@ -95,17 +168,25 @@ int RockScissorPaper(char player_one, char player_two) {
  */
 string CharWithAsciiValueAsString(char character) {
   // CODE HERE
-sadsf
   // HINT: try a stringstream here
+  stringstream my_ss;
+  int char_ascii = character;
+  my_ss << character << " " << char_ascii;
+  return my_ss.str();
 }
 
-/*
+/*:
  * Return the input string with all characters converted to lowercase.
  * @param string input - The string that will be converted to all lowercase
  * @return string - a string containing the converted input string
  */
 string ToLower(string input) {
   // CODE HERE
+
+  for (unsigned int i =0; i< input.length(); i++) {
+    input.at(i) = tolower(input.at(i));
+  }
+  return input;
 }
 
 /*
@@ -115,6 +196,10 @@ string ToLower(string input) {
  */
 string ToUpper(string input) {
   // CODE HERE
+   for (unsigned int i =0; i< input.length(); i++) {
+    input.at(i) = toupper(input.at(i));
+  }
+  return input;
 }
 
 /*
@@ -128,6 +213,7 @@ string ToUpper(string input) {
  */
 char GetCharacter(string input, int char_index) {
   // CODE HERE
+  return input.at(char_index);
 }
 
 // For testing (DO NOT ALTER)
