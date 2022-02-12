@@ -6,10 +6,15 @@
  */
 
 #include <iostream>
+
 #include <string>
+
 #include <cstdlib>
+
 #include <iostream>
+
 #include <sstream>
+
 using std::cin;
 using std::cout;
 using std::endl;
@@ -20,15 +25,17 @@ using std::boolalpha;
 
 // For testing (DO NOT ALTER)
 #include <cctype>
+
 #include <vector>
+
 void InteractiveTest();
 void UnitTest();
 void Test(bool test, int line_number, string more_info = "", string yours = "!",
-          string actual = "!");
+  string actual = "!");
 void OutputFailedTests();
 void ClearScreen();
 unsigned int ut_passed = 0, ut_failed = 0, ut_total = 0, num_of_tests = 0;
-std::vector<int> failed_tests;
+std::vector < int > failed_tests;
 
 // Function Prototypes (DO NOT ALTER)
 string MakeString(string label, double value, char separator);
@@ -66,6 +73,9 @@ int main() {
  */
 string MakeString(string label, double value, char separator) {
   // CODE HERE
+  stringstream final_product;
+  final_product << label << " " << separator << " " << value;
+  return final_product.str();
 }
 
 /*
@@ -78,6 +88,11 @@ string MakeString(string label, double value, char separator) {
  */
 char StringToChar(string value) {
   // CODE HERE
+  if (value.length() == 1) {
+    return (value.at(0));
+  } else {
+    return '\0';
+  }
 }
 
 /*
@@ -97,8 +112,7 @@ int StringToInt(string value) {
 
   try {
     converter >> ivalue;
-  } catch (ios_base::failure f) {
-  }
+  } catch (ios_base::failure f) {}
 
   return ivalue;
 }
@@ -114,6 +128,23 @@ int StringToInt(string value) {
  */
 double StringToDouble(string value) {
   // CODE HERE
+  stringstream final_product;
+  double result;
+  if (value.length() > 0) {
+    for (unsigned int i = 0; i < value.length(); i++) {
+      if (isdigit(value.at(i)) || value.at(i) == '.') {
+        final_product << value.at(i);
+      } else {
+        cout << "bob\n";
+        return 0;
+      }
+    }
+
+    final_product >> result;
+    cout << "fred\n";
+    return result;
+  }
+  return 0;
 }
 
 /*
@@ -129,6 +160,12 @@ double StringToDouble(string value) {
  */
 bool StringToBool(string value) {
   // CODE HERE
+  if (value.length() > 0) {
+    if (toupper(value.at(0)) == 'T') {
+      return true;
+    }
+  }
+  return false;
 }
 
 // For testing (DO NOT ALTER)
@@ -182,11 +219,11 @@ void UnitTest() {
 
   // Tests
   Test(MakeString("Temperature", 42.6, ':') == "Temperature : 42.6", __LINE__,
-       "MakeString(\"Temperature\", 42.6, ':')");
+    "MakeString(\"Temperature\", 42.6, ':')");
   Test(MakeString("", 75, ',') == " , 75", __LINE__,
-       "MakeString(\"\", 75, ',')");
+    "MakeString(\"\", 75, ',')");
   Test(MakeString("Total", 100.05, '=') == "Total = 100.05", __LINE__,
-       "MakeString(\"Total\", 100.05, '=')");
+    "MakeString(\"Total\", 100.05, '=')");
   Test(StringToChar("") == '\0', __LINE__, "StringToChar(\"\")");
   Test(StringToChar("yn") == '\0', __LINE__, "StringToChar(\"yn\")");
   Test(StringToChar("X") == 'X', __LINE__, "StringToChar(\"X\")");
@@ -206,14 +243,14 @@ void UnitTest() {
   cout << string(40, '-') << endl;
   cout << "END OF UNIT TEST!\n";
   cout << string(40, '-') << endl;
-  cout << "Be sure to run 'make style' to check for any style errors.\n"
-       << "Please note that 'make style' does NOT check variable names or"
-       << " indentation" << endl << endl;
+  cout << "Be sure to run 'make style' to check for any style errors.\n" <<
+    "Please note that 'make style' does NOT check variable names or" <<
+    " indentation" << endl << endl;
 }
 // For testing (DO NOT ALTER)
 // For testing (DO NOT ALTER)
 void Test(bool test, int line_number, string more_info, string yours,
-          string actual) {
+  string actual) {
   ut_total++;
   if (test) {
     cout << "PASSED TEST ";
@@ -244,9 +281,9 @@ void OutputFailedTests() {
 
 // For testing (DO NOT ALTER)
 void ClearScreen() {
-#ifdef WIN32
+  #ifdef WIN32
   system("cls");
-#else
+  #else
   system("clear");
-#endif
+  #endif
 }
