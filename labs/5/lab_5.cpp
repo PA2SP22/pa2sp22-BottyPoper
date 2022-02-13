@@ -1,12 +1,15 @@
 /*
  * Name        : lab_5.cpp
- * Author      : FILL IN
+ * Author      : Charles Clarke
  * Description : Working with Arrays
  */
 
 #include <iostream>
+
 #include <string>
+
 #include <sstream>
+
 using std::cin;
 using std::cout;
 using std::endl;
@@ -26,7 +29,14 @@ using std::stringstream;
  * @return string - A string containing the contents of values separated by the
  *                  specified separator character
  */
-string PrepareForDisplay(int values[], int size, char separator = ',');
+string PrepareForDisplay(int values[], int size, char separator = ',') {
+  stringstream final_product;
+  for (int i = 0; i < size - 1; i++) {
+    final_product << values[i] << separator;
+  }
+  final_product << values[size - 1];
+  return final_product.str();
+}
 
 /*
  * Test to see if an array contains a specified value.
@@ -35,7 +45,14 @@ string PrepareForDisplay(int values[], int size, char separator = ',');
  * @param int value - The value to search for within the array
  * @return bool - true if value is found in the array, otherwise false
  */
-bool HasValue(int values[], int size, int value);
+bool HasValue(int values[], int size, int value) {
+  for (int i = 0; i < size; i++) {
+    if (values[i] == value) {
+      return true;
+    }
+  }
+  return false;
+}
 
 /*
  * Return the value from an array at a specified index.
@@ -47,7 +64,16 @@ bool HasValue(int values[], int size, int value);
  * @return int - The value at the specified index in the array when error is set
  *               to false. if index is invalid, returns 0 and sets error to true
  */
-int ValueAt(int values[], int size, int index, bool& error);
+int ValueAt(int values[], int size, int index, bool & error) {
+  if (index >= size) {
+    error = true;
+    return 0;
+  } else {
+    error = false;
+  }
+  cout << values[index] << error;
+  return values[index];
+}
 
 /*
  * Return the sum of the values in an integer array.
@@ -55,7 +81,13 @@ int ValueAt(int values[], int size, int index, bool& error);
  * @param int size - The size of the integer array
  * @return int - The sum of the values in the array
  */
-int Sum(int values[], int size);
+int Sum(int values[], int size) {
+  int total;
+  for (int i = 0; i < size; i++) {
+    total += values[i];
+  }
+  return total;
+}
 
 /*
  * Swap the positions of two values in an integer array. The two
@@ -66,17 +98,28 @@ int Sum(int values[], int size);
  * @param int index2 - The position of the second value to be swapped
  * @return bool - true if the swap was successful, otherwise false
  */
-bool SwapValues(int values[], int size, int index1, int index2);
+bool SwapValues(int values[], int size, int index1, int index2) {
+  int temp;
+  if (index1 >= 0 && index2 >= 0 && index1 < size && index2 < size) {
+    temp = values[index1];
+    values[index1] = values[index2];
+    values[index2] = temp;
+    return true;
+  }
+  return false;
+}
 
 // For testing (DO NOT ALTER)
 #include <cctype>
+
 #include <vector>
+
 void UnitTest();
 void Test(bool test, int line_number, string more_info = "", string yours = "!",
-          string actual = "!");
+  string actual = "!");
 void OutputFailedTests();
 unsigned int ut_passed = 0, ut_failed = 0, ut_total = 0, num_of_tests = 17;
-std::vector<int> failed_tests;
+std::vector < int > failed_tests;
 
 // Program Execution Starts Here
 int main() {
@@ -88,7 +131,6 @@ int main() {
 
 // CODE HERE (FUNCTION DEFINITIONS)
 
-
 // For testing (DO NOT ALTER)
 void UnitTest() {
   cout << string(40, '-') << endl;
@@ -98,43 +140,49 @@ void UnitTest() {
   string yours = "", actual = "";
 
   // Tests
-  int values[] = { 3, 5, 7, 9, 11 };
+  int values[] = {
+    3,
+    5,
+    7,
+    9,
+    11
+  };
   int size = 5;
   yours = PrepareForDisplay(values, size);
   actual = "3,5,7,9,11";
   Test(yours == actual, __LINE__, "PrepareForDisplay(values, size)", yours,
-       actual);
+    actual);
   yours = PrepareForDisplay(values, size, ' ');
   actual = "3 5 7 9 11";
   Test(yours == actual, __LINE__, "PrepareForDisplay(values, size, ' ')", yours,
-       actual);
+    actual);
   yours = PrepareForDisplay(values, size, ':');
   actual = "3:5:7:9:11";
   Test(yours == actual, __LINE__, "PrepareForDisplay(values, size, ':')", yours,
-       actual);
+    actual);
   Test(HasValue(values, size, 0) == false, __LINE__,
-       "HasValue(values, size, 0)");
+    "HasValue(values, size, 0)");
   Test(HasValue(values, size, 3) == true, __LINE__,
-       "HasValue(values, size, 3)");
+    "HasValue(values, size, 3)");
   Test(HasValue(values, size, 11) == true, __LINE__,
-       "HasValue(values, size, 11)");
+    "HasValue(values, size, 11)");
   bool error = true;
   Test(ValueAt(values, size, 0, error) == 3 && error == false, __LINE__,
-       "ValueAt(values, size, 0, error)");
+    "ValueAt(values, size, 0, error)");
   Test(ValueAt(values, size, 5, error) == 0 && error == true, __LINE__,
-       "ValueAt(values, size, 5, error)");
+    "ValueAt(values, size, 5, error)");
   Test(ValueAt(values, size, 4, error) == 11 && error == false, __LINE__,
-       "ValueAt(values, size, 4, error)");
+    "ValueAt(values, size, 4, error)");
   Test(Sum(values, size) == 35, __LINE__, "Sum(values, size)");
   Test(Sum(values, 1) == 3, __LINE__, "Sum(values, 1)");
   Test(Sum(values, 0) == 0, __LINE__, "Sum(values, 0)");
   bool success;
   success = SwapValues(values, size, 0, 4);
   Test(values[0] == 11 && values[4] == 3 && success, __LINE__,
-       "SwapValues(values, size, 0, 4)");
+    "SwapValues(values, size, 0, 4)");
   success = SwapValues(values, size, 1, 3);
   Test(values[1] == 9 && values[3] == 5 && success, __LINE__,
-       "SwapValues(values, size, 1, 3)");
+    "SwapValues(values, size, 1, 3)");
   success = SwapValues(values, size, 2, 2);
   Test(values[2] == 7 && success, __LINE__, "SwapValues(values, size, 2, 2)");
   success = SwapValues(values, size, -2, 2);
@@ -148,14 +196,14 @@ void UnitTest() {
   cout << string(40, '-') << endl;
   cout << "END OF UNIT TEST!\n";
   cout << string(40, '-') << endl;
-  cout << "Be sure to run 'make style' to check for any style errors.\n"
-       << "Please note that 'make style' does NOT check variable names or"
-       << " indentation" << endl << endl;
+  cout << "Be sure to run 'make style' to check for any style errors.\n" <<
+    "Please note that 'make style' does NOT check variable names or" <<
+    " indentation" << endl << endl;
 }
 
 // For testing (DO NOT ALTER)
 void Test(bool test, int line_number, string more_info, string yours,
-          string actual) {
+  string actual) {
   ut_total++;
   if (test) {
     cout << "PASSED TEST ";
