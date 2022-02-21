@@ -4,9 +4,13 @@
  * Description : Working with File I/O
  */
 #include <fstream>
+
 #include <iostream>
+
 #include <map>
+
 #include <string>
+
 using std::cout;
 using std::ifstream;
 using std::endl;
@@ -33,8 +37,10 @@ bool ProcessFile(string filename);
 
 // For testing (DO NOT ALTER)
 #include <cctype>
+
 #include <vector>
-map<int, int> counters;
+
+map < int, int > counters;
 void OnTen();
 void OnTwenty();
 void OnThirty();
@@ -43,10 +49,10 @@ void OnFifty();
 void OnError();
 void UnitTest();
 void Test(bool test, int line_number, string more_info = "", string yours = "!",
-          string actual = "!");
+  string actual = "!");
 void OutputFailedTests();
 unsigned int ut_passed = 0, ut_failed = 0, ut_total = 0, num_of_tests = 7;
-std::vector<int> failed_tests;
+std::vector < int > failed_tests;
 
 // Program Execution Starts Here
 int main() {
@@ -57,7 +63,36 @@ int main() {
 }
 
 // CODE HERE -- FUNCTION DEFINITION
-
+bool ProcessFile(string filename) {
+  string input;
+  ifstream fin(filename);
+  if (fin.fail()) {
+    cout << "Failed to open File";
+    return 0;
+  }
+  while (getline(fin, input)) {
+    switch (stoi(input)) {
+    case 10:
+      OnTen();
+      break;
+    case 20:
+      OnTwenty();
+      break;
+    case 30:
+      OnThirty();
+      break;
+    case 40:
+      OnForty();
+      break;
+    case 50:
+      OnFifty();
+      break;
+    default:
+      OnError();
+    }
+  }
+  return 1;
+}
 // For testing (DO NOT ALTER)
 void UnitTest() {
   cout << string(40, '-') << endl;
@@ -68,7 +103,7 @@ void UnitTest() {
 
   // Tests
   counters[10] = 0, counters[20] = 0, counters[20] = 0, counters[40] = 0,
-  counters[50] = 0, counters[99] = 0;
+    counters[50] = 0, counters[99] = 0;
   ProcessFile("lab_7_input.txt");
   Test(counters[10] == 15, __LINE__, "Counting 10s");
   Test(counters[20] == 14, __LINE__, "Counting 20s");
@@ -77,7 +112,7 @@ void UnitTest() {
   Test(counters[50] == 11, __LINE__, "Counting 50s");
   Test(counters[99] == 35, __LINE__, "Counting Errors");
   Test(ProcessFile("non-existent-file.txt") == false, __LINE__,
-       "Processing non-existent file");
+    "Processing non-existent file");
 
   cout << string(40, '-') << endl;
   cout << "Passed: " << ut_passed << " / " << ut_total << endl;
@@ -85,13 +120,13 @@ void UnitTest() {
   cout << string(40, '-') << endl;
   cout << "END OF UNIT TEST!\n";
   cout << string(40, '-') << endl;
-  cout << "Be sure to run 'make style' to check for any style errors.\n"
-       << "Please note that 'make style' does NOT check variable names or"
-       << " indentation" << endl << endl;
+  cout << "Be sure to run 'make style' to check for any style errors.\n" <<
+    "Please note that 'make style' does NOT check variable names or" <<
+    " indentation" << endl << endl;
 }
 // For testing (DO NOT ALTER)
 void Test(bool test, int line_number, string more_info, string yours,
-          string actual) {
+  string actual) {
   ut_total++;
   if (test) {
     cout << "PASSED TEST ";
