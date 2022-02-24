@@ -1,6 +1,6 @@
 /*
  * Name        : lab_7.cpp
- * Author      : FILL IN
+ * Author      : Charles
  * Description : Working with File I/O
  */
 #include <fstream>
