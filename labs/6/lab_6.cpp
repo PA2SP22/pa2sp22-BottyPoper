@@ -1,14 +1,19 @@
 /*
  * Name        : lab_6.cpp
- * Author      : FILL IN
+ * Author      : Charles Clarke
  * Description : Practicing Functions
  */
 
 #include <iostream>
+
 #include <string>
+
 #include <cstdlib>
+
 #include <sstream>
+
 #include <streambuf>
+
 using std::cin;
 using std::cout;
 using std::endl;
@@ -34,7 +39,7 @@ void Hello();
  * Display message to stdout (no newline character after)
  */
 // CODE HERE (FUNCTION PROTOTYPE)
-
+void PrintMessage(const string & message);
 /*
  * function name: GetAnswer
  * parameters: none
@@ -44,7 +49,7 @@ void Hello();
  * Return the value 42
  */
 // CODE HERE (FUNCTION PROTOTYPE)
-
+int GetAnswer();
 /*
  * function name: FindLarger
  * parameters: int (const call-by-reference), int (const call-by-reference)
@@ -55,7 +60,8 @@ void Hello();
  * if the values are equivalent.
  */
 // CODE HERE (FUNCTION PROTOTYPE)
-
+int FindLarger(const int & first_int,
+  const int & second_int);
 /*
  * function name: GetStats
  * parameters: string (const call-by-reference), int (call-by-reference),
@@ -69,7 +75,8 @@ void Hello();
  * characters in the first parameter (string)
  */
 // CODE HERE (FUNCTION PROTOTYPE)
-
+int GetStats(const string & input, int & uppercase_count,
+int & lowercase_count);
 /*
  * function name: BuildMessage
  * parameters: string (const call-by-reference), bool (const call-by-reference)
@@ -83,17 +90,20 @@ void Hello();
  * "Message: empty".
  */
 // CODE HERE (FUNCTION PROTOTYPE)
-
-
+string BuildMessage(const string & message, bool to_uppercase);
+string BuildMessage(const string & message);
+string BuildMessage();
 // For testing (DO NOT ALTER)
 #include <cctype>
+
 #include <vector>
+
 void UnitTest();
 void Test(bool test, int line_number, string more_info = "", string yours = "!",
-          string actual = "!");
+  string actual = "!");
 void OutputFailedTests();
 unsigned int ut_passed = 0, ut_failed = 0, ut_total = 0, num_of_tests = 0;
-std::vector<int> failed_tests;
+std::vector < int > failed_tests;
 
 // Program Execution Starts Here
 int main() {
@@ -107,7 +117,50 @@ int main() {
 void Hello() {
   cout << "Hello world!";
 }
-
+void PrintMessage(const string & message) {
+  cout << message;
+}
+int GetAnswer() {
+  return 42;
+}
+int FindLarger(const int & first_int,
+  const int & second_int) {
+  if (first_int > second_int) {
+    return first_int;
+  } else {
+    return second_int;
+  }
+}
+int GetStats(const string & input, int & uppercase_count,
+int & lowercase_count) {
+  uppercase_count = 0;
+  lowercase_count = 0;
+  for (unsigned int i = 0; i < input.length(); i++) {
+    if (input.at(i) >= 'A' && input.at(i) <= 'Z') {
+      uppercase_count++;
+    } else if (input.at(i) >= 'a' && input.at(i) <= 'z') {
+      lowercase_count++;
+    }
+  }
+  return input.length();
+}
+string BuildMessage(const string & message, bool to_uppercase) {
+  string built_message = message;
+  if (to_uppercase) {
+    for (unsigned int i = 0; i < message.length(); i++) {
+      if (message.at(i) >= 'a' && message.at(i) <= 'z') {
+        built_message.at(i) -= 'a' - 'A';
+      }
+    }
+  }
+  return "Message: " + built_message;
+}
+string BuildMessage(const string & message) {
+  return "Message: " + message;
+}
+string BuildMessage() {
+  return "Message: empty";
+}
 // For testing (DO NOT ALTER)
 void UnitTest() {
   cout << string(40, '-') << endl;
@@ -117,7 +170,7 @@ void UnitTest() {
   string yours = "", actual = "";
 
   // Tests
-  std::streambuf* oldCout = cout.rdbuf();
+  std::streambuf * oldCout = cout.rdbuf();
   std::ostringstream captureCout;
   cout.rdbuf(captureCout.rdbuf());
   Hello();
@@ -132,35 +185,35 @@ void UnitTest() {
   yours = captureCout.str();
   actual = "Hello again!";
   Test(yours == actual, __LINE__, "PrintMessage(\"Hello again!\")", yours,
-       actual);
+    actual);
   Test(GetAnswer() == 42, __LINE__, "GetAnswer()");
   Test(FindLarger(-1, 1) == 1, __LINE__, "FindLarger(-1, 1)");
   Test(FindLarger(1, -1) == 1, __LINE__, "FindLarger(1, -1)");
   Test(FindLarger(1, 1) == 1, __LINE__, "FindLarger(1, 1)");
   int upper = 0, lower = 0;
   Test(GetStats("abc ABC", upper, lower) == 7 && upper == 3 && lower == 3,
-       __LINE__, "GetStats(\"abc 123\", upper, lower)");
+    __LINE__, "GetStats(\"abc 123\", upper, lower)");
   Test(GetStats("abc", upper, lower) == 3 && upper == 0 && lower == 3, __LINE__,
-       "GetStats(\"abc\", upper, lower)");
+    "GetStats(\"abc\", upper, lower)");
   Test(GetStats("ABC", upper, lower) == 3 && upper == 3 && lower == 0, __LINE__,
-       "GetStats(\"ABC\", upper, lower)");
+    "GetStats(\"ABC\", upper, lower)");
   Test(GetStats("", upper, lower) == 0 && upper == 0 && lower == 0, __LINE__,
-       "GetStats(\"\", upper, lower)");
+    "GetStats(\"\", upper, lower)");
   yours = BuildMessage("hello");
   actual = "Message: hello";
   Test(yours == actual, __LINE__, "BuildMessage(\"hello\")", yours, actual);
   yours = BuildMessage("hello", true);
   actual = "Message: HELLO";
   Test(yours == actual, __LINE__, "BuildMessage(\"hello\", true)", yours,
-       actual);
+    actual);
   yours = BuildMessage("HELLO", false);
   actual = "Message: HELLO";
   Test(yours == actual, __LINE__, "BuildMessage(\"HELLO\", false)", yours,
-       actual);
+    actual);
   yours = BuildMessage("HELLO", true);
   actual = "Message: HELLO";
   Test(yours == actual, __LINE__, "BuildMessage(\"HELLO\", true)", yours,
-       actual);
+    actual);
   yours = BuildMessage();
   actual = "Message: empty";
   Test(yours == actual, __LINE__, "BuildMessage()", yours, actual);
@@ -171,14 +224,14 @@ void UnitTest() {
   cout << string(40, '-') << endl;
   cout << "END OF UNIT TEST!\n";
   cout << string(40, '-') << endl;
-  cout << "Be sure to run 'make style' to check for any style errors.\n"
-       << "Please note that 'make style' does NOT check variable names or"
-       << " indentation" << endl << endl;
+  cout << "Be sure to run 'make style' to check for any style errors.\n" <<
+    "Please note that 'make style' does NOT check variable names or" <<
+    " indentation" << endl << endl;
 }
 
 // For testing (DO NOT ALTER)
 void Test(bool test, int line_number, string more_info, string yours,
-          string actual) {
+  string actual) {
   ut_total++;
   if (test) {
     cout << "PASSED TEST ";
