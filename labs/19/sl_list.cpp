@@ -1,7 +1,7 @@
 /*
  * Name        : lab_18.cpp
  * Author      : Charles Class
- * Description : Linked List 
+ * Description : Linked List
  */
 #include "sl_list.h"
 SLList::SLList()
@@ -27,9 +27,16 @@ void SLList::InsertHead(int contents)
     }
     size_++;
 }
+void SLList::InsertTail(int contents)
+{
+    SLNode *temp = new SLNode(contents);
+    tail_->set_next_node(temp);
+    tail_=temp;
+    tail_->set_next_node(NULL);
+}
 void SLList::RemoveHead()
 {
-    if (size_>0)
+    if (size_ > 0)
     {
         SLNode *temp = head_->next_node();
         delete head_;
@@ -50,6 +57,14 @@ void SLList::Clear()
     }
     size_ = 0;
 }
+int SLList::GetHead() const
+{
+    return head_->contents();
+}
+int SLList::GetTail() const
+{
+    return tail_->contents();
+}
 unsigned int SLList::size() const
 {
     return size_;
@@ -57,14 +72,14 @@ unsigned int SLList::size() const
 std::string SLList::ToString() const
 {
     std::stringstream output;
-    std::cout<<size_<<std::endl;
+    std::cout << size_ << std::endl;
     if (size_ != 0)
     {
         SLNode *temp = head_;
         output << head_->contents();
         if (head_->next_node() != NULL)
         {
-            temp=head_->next_node();
+            temp = head_->next_node();
         }
         for (unsigned int i = 1; i < size_; i++)
         {
