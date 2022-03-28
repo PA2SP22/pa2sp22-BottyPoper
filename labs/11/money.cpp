@@ -21,3 +21,27 @@ const Money operator +(const Money& amount1, const Money& amount2) {
 }
 
 // CLASS FUNCTION DEFINITIONS GO HERE
+  const Money operator -(const Money& amount1, const Money& amount2){
+  return amount1+(-amount2);
+  }
+  bool operator ==(const Money &amount1, const Money &amount2){
+  return amount1.dollars()==amount2.dollars()&&amount1.cents()==amount2.cents();
+  }
+  const Money operator -(const Money &amount){
+  Money result;
+  result.set_cents(-amount.cents());
+  result.set_dollars(-amount.dollars());
+  return result;
+  }
+  ostream& operator <<(ostream &out, const Money &amount){
+    if(amount.dollars()<0||amount.cents()<0){
+    out << "$-" << abs(amount.dollars()) << ".";
+    out << setfill ('0') << setw (2);
+    out << abs(amount.cents()); 
+    }else{
+    out << "$" << amount.dollars() << ".";
+    out << setfill ('0') << setw (2);
+    out << abs(amount.cents()); 
+    }
+    return out;
+  }
