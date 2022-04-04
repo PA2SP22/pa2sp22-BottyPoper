@@ -1,11 +1,14 @@
 /*
  * Name        : lab_12.cpp
- * Author      : FILL IN
+ * Author      : Charles Clarke
  * Description : Working with Pointers and Dynamic Variables / Arrays
  */
 #include <iostream>
+
 #include <string>
+
 #include <cstring>
+
 using std::cout;
 using std::endl;
 using std::string;
@@ -15,7 +18,7 @@ using std::string;
  * @param unsigned int size - The desired size of the dynamic array
  * @return int* - A pointer to the newly allocated integer array
  */
-int* MakeDynoIntArray(unsigned int size);
+int * MakeDynoIntArray(unsigned int size);
 
 /*
  * Compute the sum of an array.
@@ -25,7 +28,7 @@ int* MakeDynoIntArray(unsigned int size);
  * @throw The message "NULL ARRAY REFERENCE" if the_array is NULL
  *        Syntax: throw "The Message to throw";
  */
-int Sum(int* the_array, unsigned int array_size);
+int Sum(int * the_array, unsigned int array_size);
 
 /*
  * Identify the max value in an array.
@@ -35,7 +38,7 @@ int Sum(int* the_array, unsigned int array_size);
  * @throw The message "NULL ARRAY REFERENCE" if the_array is NULL
  *        Syntax: throw "The Message to throw";
  */
-int Max(int* the_array, unsigned int array_size);
+int Max(int * the_array, unsigned int array_size);
 
 /*
  * Identify the min value in an array.
@@ -45,17 +48,19 @@ int Max(int* the_array, unsigned int array_size);
  * @throw The message "NULL ARRAY REFERENCE" if the_array is NULL
  *        Syntax: throw "The Message to throw";
  */
-int Min(int* the_array, unsigned int array_size);
+int Min(int * the_array, unsigned int array_size);
 
 // For testing (DO NOT ALTER)
 #include <cctype>
+
 #include <vector>
+
 void UnitTest();
 void Test(bool test, int line_number, string more_info = "", string yours = "!",
-          string actual = "!");
+  string actual = "!");
 void OutputFailedTests();
 unsigned int ut_passed = 0, ut_failed = 0, ut_total = 0, num_of_tests = 0;
-std::vector<int> failed_tests;
+std::vector < int > failed_tests;
 
 // Program Execution Starts Here
 int main() {
@@ -66,7 +71,48 @@ int main() {
 }
 
 // CODE HERE -- FUNCTION DEFINITIONS
-
+int * MakeDynoIntArray(unsigned int size) {
+  int * result = new int[size];
+  return result;
+}
+int Sum(int * the_array, unsigned int array_size) {
+  int result = 0;
+  for (unsigned int i = 0; i < array_size; i++) {
+    result += the_array[i];
+  }
+  return result;
+}
+int Max(int * the_array, unsigned int array_size) {
+  int result;
+  if (array_size > 0) {
+    result = the_array[0];
+    for (unsigned int i = 1; i < array_size; i++) {
+      if (result < the_array[i]) {
+        result = the_array[i];
+        throw "NULL ARRAY REFERENCE";
+      }
+    }
+  } else {
+    throw "NULL ARRAY REFERENCE";
+    result = 0;
+  }
+  return result;
+}
+int Min(int * the_array, unsigned int array_size) {
+  int result;
+  if (array_size > 0) {
+    result = the_array[0];
+    for (unsigned int i = 1; i < array_size; i++) {
+      if (result > the_array[i]) {
+        result = the_array[i];
+      }
+    }
+  } else {
+    throw "NULL ARRAY REFERENCE";
+    result = 0;
+  }
+  return result;
+}
 
 // For testing (DO NOT ALTER)
 void UnitTest() {
@@ -76,28 +122,28 @@ void UnitTest() {
     cout << "Total Number of Tests: " << num_of_tests << endl;
   string yours = "", actual = "";
   // Tests
-  int* my_array = NULL;  // = makeDynoIntArray(10);
+  int * my_array = NULL; // = makeDynoIntArray(10);
   unsigned int my_array_size = 0;
 
   try {
     Sum(my_array, my_array_size);
-  } catch (const char* e) {
+  } catch (const char * e) {
     Test(!strcmp(e, "NULL ARRAY REFERENCE"), __LINE__,
-         "Sum() EXCEPTION HANDLING");
+      "Sum() EXCEPTION HANDLING");
   }
 
   try {
     Min(my_array, my_array_size);
-  } catch (const char* e) {
+  } catch (const char * e) {
     Test(!strcmp(e, "NULL ARRAY REFERENCE"), __LINE__,
-         "Min() EXCEPTION HANDLING");
+      "Min() EXCEPTION HANDLING");
   }
 
   try {
     Max(my_array, my_array_size);
-  } catch (const char* e) {
+  } catch (const char * e) {
     Test(!strcmp(e, "NULL ARRAY REFERENCE"), __LINE__,
-         "Max() EXCEPTION HANDLING");
+      "Max() EXCEPTION HANDLING");
   }
 
   my_array_size = 3;
@@ -132,14 +178,14 @@ void UnitTest() {
   cout << string(40, '-') << endl;
   cout << "END OF UNIT TEST!\n";
   cout << string(40, '-') << endl;
-  cout << "Be sure to run 'make style' to check for any style errors.\n"
-       << "Please note that 'make style' does NOT check variable names or"
-       << " indentation" << endl << endl;
+  cout << "Be sure to run 'make style' to check for any style errors.\n" <<
+    "Please note that 'make style' does NOT check variable names or" <<
+    " indentation" << endl << endl;
 }
 
 // For testing (DO NOT ALTER)
 void Test(bool test, int line_number, string more_info, string yours,
-          string actual) {
+  string actual) {
   ut_total++;
   if (test) {
     cout << "PASSED TEST ";
