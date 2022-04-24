@@ -15,7 +15,7 @@ class TodoList
     unsigned int list_size;
     // Private Member functions
     void IncreseSize();
-    void CompactEmptySpace();
+    void CompactEmptySpace(unsigned int missing_space);
 
 public:
     // Constructor

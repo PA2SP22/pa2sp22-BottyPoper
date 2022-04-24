@@ -116,7 +116,7 @@ void UnitTest() {
        string("Go to Store@1@0"));
   Test(list.ToFile() == "Go to Store@1@0\n", "ToFile()", list.ToFile(),
        string("Go to Store@1@0\n"));
-  cout << "Testing Overloaded <<:\n" << calist  << endl;
+  cout << "Testing Overloaded <<:\n" << list  << endl;
 
   cout << "\n*****TodoList Member Functions with 2 Items*****\n";
   list.AddItem(new TodoItem(desc1, 2, true));
