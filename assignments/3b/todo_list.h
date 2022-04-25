@@ -65,5 +65,5 @@ public:
     unsigned int GetSize();
     unsigned int GetCapacity();
     // friend
-    friend std::ostream& operator<<(std::ostream& original, TodoList list_to_output);
+    friend std::ostream& operator<<(std::ostream &original,TodoList &list_to_output);
 };

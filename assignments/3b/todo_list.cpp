@@ -10,10 +10,9 @@
 using std::endl;
 void TodoList::IncreseSize()
 {
-    std::stringstream testy;
     TodoItem **temp;
     temp = new TodoItem *[list_capacity + 10];
-    for (unsigned int i; i < list_capacity;)
+    for (unsigned int i = 0; i < list_capacity; i++)
     {
         temp[i] = bar[i];
     }
@@ -78,41 +77,47 @@ TodoItem *TodoList::GetItem(unsigned int index_to_get)
 }
 void TodoList::Sort()
 {
-    TodoItem *current = bar[0];
+
+    int j;
+    TodoItem *current;
     for (unsigned int i = 1; i < list_size; i++)
     {
-
-       // for (unsigned int j = i - 1; bar[j]->priority()>bar[i]->priority(); j--)
-       // {
-      //      {
-      //         
-       //     }
-//
-        }
-    }
-    string TodoList::ToFile()
-    {
-        std::stringstream output;
-        for (unsigned int i = 0; i < list_size; i++)
+        current = new TodoItem(bar[i]->description(), bar[i]->priority(), bar[i]->completed());
+        
+        j = i;;
+        while (current->priority() < bar[j - 1]->priority() && j > 0)
         {
-            output << bar[i]->ToFile() << "\n";
+            std::cout <<"j " << j << " bar[j] " << bar[j]->ToFile() << " bar[j-1] "<< bar[j-1]->ToFile()<< endl;
+            bar[j] = bar[j - 1];
+            std::cout <<"how?" << endl;
+            j--;
         }
-        return output.str();
+        bar[j] = current;
     }
-    unsigned int TodoList::GetSize()
+}
+string TodoList::ToFile()
+{
+    std::stringstream output;
+    for (unsigned int i = 0; i < list_size; i++)
     {
-        return list_size;
+        output << bar[i]->ToFile() << "\n";
     }
-    unsigned int TodoList::GetCapacity()
+    return output.str();
+}
+unsigned int TodoList::GetSize()
+{
+    return list_size;
+}
+unsigned int TodoList::GetCapacity()
+{
+    return list_capacity;
+}
+std::ostream &operator<<(std::ostream &original, TodoList &list_to_output)
+{
+    for (unsigned int i = 0; i < list_to_output.GetSize(); i++)
     {
-        return list_capacity;
+        original << list_to_output.bar[i]->description() << list_to_output.bar[i]->priority()
+                 << list_to_output.bar[i]->completed() << std::endl;
     }
-    std::ostream &operator<<(std::ostream &original, TodoList list_to_output)
-    {
-        for (unsigned int i = 0; i < list_to_output.GetSize(); i++)
-        {
-            original << list_to_output.bar[i]->description() << list_to_output.bar[i]->priority()
-                     << list_to_output.bar[i]->completed() << std::endl;
-        }
-        return original;
-    }
+    return original;
+}
