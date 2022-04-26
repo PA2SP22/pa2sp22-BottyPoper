@@ -1,6 +1,6 @@
 /*
  * Name        : money.h
- * Author      : FILL IN
+ * Author      : Charles Clarke
  * Description : Class Header File
  */
 
