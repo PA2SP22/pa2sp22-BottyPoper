@@ -3,8 +3,8 @@
  * Author      : Charles Clarke
  * Description : header for todo_item
  */
-#ifndef foobar
-#define foobar
+#ifndef item
+#define item
 #include <string>
 
 #include <sstream>

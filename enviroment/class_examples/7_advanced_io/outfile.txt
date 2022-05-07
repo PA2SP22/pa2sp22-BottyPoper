@@ -1,3 +1,0 @@
-The sum of the first 3
-numbers in infile.txt
-are 6

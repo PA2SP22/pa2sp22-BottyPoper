@@ -45,9 +45,9 @@ TodoList::TodoList()
 }
 TodoList::~TodoList()
 {
-    for (unsigned int i = 0; i < 25; i++)
+    for (unsigned int i = 0; i < list_size; i++)
     {
-        delete[] bar[i];
+        delete bar[i];
         bar[i] = NULL;
     }
 }
@@ -77,23 +77,18 @@ TodoItem *TodoList::GetItem(unsigned int index_to_get)
 }
 void TodoList::Sort()
 {
-
-    int j;
-    TodoItem *current;
-    for (unsigned int i = 1; i < list_size; i++)
-    {
-        current = new TodoItem(bar[i]->description(), bar[i]->priority(), bar[i]->completed());
-        
-        j = i;;
-        while (current->priority() < bar[j - 1]->priority() && j > 0)
-        {
-            std::cout <<"j " << j << " bar[j] " << bar[j]->ToFile() << " bar[j-1] "<< bar[j-1]->ToFile()<< endl;
-            bar[j] = bar[j - 1];
-            std::cout <<"how?" << endl;
-            j--;
+ for(unsigned int i = 0; i <= (list_size - 1); i++) {
+    unsigned int min_priority = i;
+      for(unsigned int j = i + 1; j <= (list_size - 1); j++) {
+        if (bar[j]->priority() < bar[min_priority]->priority()) {
+          min_priority = j;
         }
-        bar[j] = current;
-    }
+      }
+      if (min_priority != i) {
+        std::swap(bar[i], bar[min_priority]);
+      }
+  }
+
 }
 string TodoList::ToFile()
 {
