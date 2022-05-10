@@ -1,11 +1,12 @@
 /*
  * Name        : lab_9.cpp
- * Author      : FILL IN
+ * Author      : Charles Clarke
  * Description : Working with Classes
  */
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <iomanip>
 using std::cout;
 using std::endl;
 using std::string;
@@ -16,8 +17,9 @@ using std::stringstream;
  * A class to model a simple spaceship for a science fiction
  * game or story.
  */
-class Spaceship {
- public:
+class Spaceship
+{
+public:
   /*
    * Set the name of this Spaceship.
    * @param string name - The name for this Spaceship
@@ -80,7 +82,7 @@ class Spaceship {
    */
   string ToString() const;
 
- private:
+private:
   string name_;
   float top_speed_;
   string fuel_source_;
@@ -98,7 +100,8 @@ unsigned int ut_passed = 0, ut_failed = 0, ut_total = 0, num_of_tests = 0;
 std::vector<int> failed_tests;
 
 // Program Execution Starts Here
-int main() {
+int main()
+{
   // To test your code (DO NOT ALTER)
   UnitTest();
   // This ends program execution
@@ -106,12 +109,61 @@ int main() {
 }
 
 // CODE HERE -- CLASS DEFINITION
+void Spaceship::set_name(string name)
+{
+  name_ = name;
+}
 
+void Spaceship::set_top_speed(double top_speed)
+{
+  top_speed_ = top_speed;
+}
 
+void Spaceship::set_fuel_source(string fuel_source)
+{
+  fuel_source_ = fuel_source;
+}
+
+void Spaceship::set_crew_capacity(int crew_capacity)
+{
+  crew_capacity_ = crew_capacity;
+}
+
+string Spaceship::name() const
+{
+  return name_;
+}
+
+double Spaceship::top_speed() const
+{
+  return top_speed_;
+}
+
+string Spaceship::fuel_source() const
+{
+  return fuel_source_;
+}
+
+int Spaceship::crew_capacity() const
+{
+  return crew_capacity_;
+}
+
+string Spaceship::ToString() const
+{
+  stringstream output;
+
+  output << name_ << "\nTop Speed:     Warp " << std::fixed
+         << std::setprecision(2) << top_speed_ << "\nFuel Source:   "
+         << fuel_source_ << "\nCrew Capacity: " << crew_capacity_;
+  return output.str();
+}
 // For testing (DO NOT ALTER)
-void UnitTest() {
+void UnitTest()
+{
   cout << string(40, '-') << endl;
-  cout << "UNIT TEST:\n" << string(40, '-') << endl;
+  cout << "UNIT TEST:\n"
+       << string(40, '-') << endl;
   if (num_of_tests != 0)
     cout << "Total Number of Tests: " << num_of_tests << endl;
   string yours = "", actual = "";
@@ -139,11 +191,12 @@ void UnitTest() {
 
   yours = enterprise.ToString();
   actual = "USS Enterprise-D\n"
-      "Top Speed:     Warp 9.60\n"
-      "Fuel Source:   Plasma\n"
-      "Crew Capacity: 5000";
+           "Top Speed:     Warp 9.60\n"
+           "Fuel Source:   Plasma\n"
+           "Crew Capacity: 5000";
   Test(yours == actual, __LINE__, "ToString()", yours, actual);
-  cout << "\n" << enterprise.ToString() << "\n\n";
+  cout << "\n"
+       << enterprise.ToString() << "\n\n";
 
   cout << string(40, '-') << endl;
   cout << "Passed: " << ut_passed << " / " << ut_total << endl;
@@ -153,23 +206,29 @@ void UnitTest() {
   cout << string(40, '-') << endl;
   cout << "Be sure to run 'make style' to check for any style errors.\n"
        << "Please note that 'make style' does NOT check variable names or"
-       << " indentation" << endl << endl;
+       << " indentation" << endl
+       << endl;
 }
 
 // For testing (DO NOT ALTER)
 void Test(bool test, int line_number, string more_info, string yours,
-          string actual) {
+          string actual)
+{
   ut_total++;
-  if (test) {
+  if (test)
+  {
     cout << "PASSED TEST ";
     ut_passed++;
-  } else {
+  }
+  else
+  {
     cout << "FAILED TEST ";
     ut_failed++;
     failed_tests.push_back(ut_total);
   }
   cout << ut_total << " " << more_info << "!" << endl;
-  if (!test) {
+  if (!test)
+  {
     if (yours != "!")
       cout << "Yours:  \"" << yours << '"' << endl;
     if (actual != "!")
@@ -178,8 +237,10 @@ void Test(bool test, int line_number, string more_info, string yours,
   }
 }
 
-void OutputFailedTests() {
-  if (failed_tests.size()) {
+void OutputFailedTests()
+{
+  if (failed_tests.size())
+  {
     cout << "Failed test number(s): ";
     for (unsigned int i = 0; i < failed_tests.size() - 1; i++)
       cout << failed_tests.at(i) << ", ";
