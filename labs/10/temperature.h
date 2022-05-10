@@ -6,6 +6,7 @@
 
 #include <string>
 #include <sstream>
+#include <cctype>
 using std::string;
 using std::stringstream;
 
