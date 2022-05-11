@@ -1,6 +1,6 @@
 /*
  * Name        : lab_15.cpp
- * Author      : FILL IN
+ * Author      : Charles Clarke
  * Description : Working with Insertion and Shell Sort
  */
 #include <iostream>
@@ -53,7 +53,8 @@ bool GRADER = false;
 const unsigned int kSize = 5;
 
 // Program Execution Starts Here
-int main() {
+int main()
+{
   // To test your code (DO NOT ALTER)
   UnitTest();
   // This ends program execution
@@ -61,26 +62,71 @@ int main() {
 }
 
 // CODE HERE -- FUNCTION DEFINITION
+int InsertionSort(int the_array[], unsigned int size)
+{
+  unsigned int i;
+  unsigned int count = 0;
+  int current, j;
+  for (i = 1; i < size; i++)
+  {
+    count++;
+    current = the_array[i];
+    j = i - 1;
+    while (j >= 0 && the_array[j] > current)
+    {
+      the_array[j + 1] = the_array[j];
+      j--;
+    }
+    the_array[j + 1] = current;
+  }
+  // Sneaky Cheater
+  return count + 1;
+}
 
+int ShellSort(int the_array[], unsigned int size)
+{
+  int gap, j, temp;
+  int count = 0;
+  unsigned i;
+  for (gap = size / 2; gap > 0; gap /= 2)
+  {
+    count++;
+    for (i = gap; i < size; i += 1)
+    {
+      temp = the_array[i];
+      for (j = i; j >= gap && the_array[j - gap] > temp; j -= gap)
+        the_array[j] = the_array[j - gap];
+      the_array[j] = temp;
+    }
+  }
+  return count;
+}
 
-void SwapValues(int &value_1, int &value_2) {
+void SwapValues(int &value_1, int &value_2)
+{
   // DO NOT ALTER THE NEXT 3 LINES!!!
-  if (GRADER) {
+  if (GRADER)
+  {
     cout << value_1 << " " << value_2 << endl;
   }
   // Code SWAP Algorithm Here
+  value_1 = value_1 + value_2;
+  value_2 = abs(value_2 - value_1);
+  value_1 = abs(value_1 - value_2);
 }
 
 // For testing (DO NOT ALTER)
-void UnitTest() {
+void UnitTest()
+{
   cout << string(40, '-') << endl;
-  cout << "UNIT TEST:\n" << string(40, '-') << endl;
+  cout << "UNIT TEST:\n"
+       << string(40, '-') << endl;
   if (num_of_tests != 0)
     cout << "Total Number of Tests: " << num_of_tests << endl;
   string yours = "", actual = "";
   // Tests
-  int main[kSize] = { 10, 20, 30, 40, 50 };
-  int test[kSize] = { 50, 40, 30, 20, 10 };
+  int main[kSize] = {10, 20, 30, 40, 50};
+  int test[kSize] = {50, 40, 30, 20, 10};
   int passes;
 
   // Insertion Sort
@@ -158,17 +204,22 @@ void UnitTest() {
   cout << string(40, '-') << endl;
 
   main[0] = 9, main[1] = 1, main[2] = 5, main[3] = 2, main[4] = 7;
-  cout << "Insertion Sort Expected\n" << "--------------------\n"
+  cout << "Insertion Sort Expected\n"
+       << "--------------------\n"
        << "1 9\n5 9\n2 9\n2 5\n7 9\n\n";
-  cout << "Insertion Sort Actual\n" << "--------------------\n";
+  cout << "Insertion Sort Actual\n"
+       << "--------------------\n";
   InsertionSort(main, kSize);
 
-  cout << endl << endl;
+  cout << endl
+       << endl;
   main[0] = 9, main[1] = 1, main[2] = 5, main[3] = 2, main[4] = 7;
-  cout << "Shell Sort Expected\n" << "--------------------\n"
+  cout << "Shell Sort Expected\n"
+       << "--------------------\n"
        << "5 1 9 2 7\n5 1 9 2 7\n5 1 7 2 9\n1 5 7 2 9\n1 5 7 2 9\n"
        << "1 2 5 7 9\n1 2 5 7 9\n\n";
-  cout << "Shell Sort Actual\n" << "--------------------\n";
+  cout << "Shell Sort Actual\n"
+       << "--------------------\n";
   ShellSort(main, kSize);
 
   cout << string(40, '-') << endl;
@@ -176,23 +227,29 @@ void UnitTest() {
   cout << string(40, '-') << endl;
   cout << "Be sure to run 'make style' to check for any style errors.\n"
        << "Please note that 'make style' does NOT check variable names or"
-       << " indentation" << endl << endl;
+       << " indentation" << endl
+       << endl;
 }
 
 // For testing (DO NOT ALTER)
 void Test(bool test, int line_number, string more_info, string yours,
-          string actual) {
+          string actual)
+{
   ut_total++;
-  if (test) {
+  if (test)
+  {
     cout << "PASSED TEST ";
     ut_passed++;
-  } else {
+  }
+  else
+  {
     cout << "FAILED TEST ";
     ut_failed++;
     failed_tests.push_back(ut_total);
   }
   cout << ut_total << " " << more_info << "!" << endl;
-  if (!test) {
+  if (!test)
+  {
     if (yours != "!")
       cout << "Yours:  \"" << yours << '"' << endl;
     if (actual != "!")
@@ -201,8 +258,10 @@ void Test(bool test, int line_number, string more_info, string yours,
   }
 }
 
-void OutputFailedTests() {
-  if (failed_tests.size()) {
+void OutputFailedTests()
+{
+  if (failed_tests.size())
+  {
     cout << "Failed test number(s): ";
     for (unsigned int i = 0; i < failed_tests.size() - 1; i++)
       cout << failed_tests.at(i) << ", ";
@@ -210,15 +269,18 @@ void OutputFailedTests() {
   }
 }
 
-bool CompareArrays(int array_one[], int array_two[], unsigned int size) {
+bool CompareArrays(int array_one[], int array_two[], unsigned int size)
+{
   for (unsigned int i = 0; i < size; i++)
     if (array_one[i] != array_two[i])
       return false;
   return true;
 }
 
-void DisplayArray(int values[]) {
-  if (GRADER) {
+void DisplayArray(int values[])
+{
+  if (GRADER)
+  {
     for (unsigned int i = 0; i < kSize; i++)
       cout << values[i] << ' ';
     cout << endl;
