@@ -9,6 +9,7 @@
 
 #include <cstring>
 
+#include <sstream>
 using std::cout;
 using std::endl;
 using std::string;
@@ -18,14 +19,14 @@ using std::string;
  * @param string contents - The desired contents of the dynamic string
  * @return string* - A pointer to the newly allocated string
  */
-string * MakeDynoString(string contents);
+string *MakeDynoString(string contents);
 
 /*
  * Free the memory associated with a dynamic string and NULL out its pointer.
  * @param string *& the_string - A pointer (passed by reference) to a dynamic
  *                               string
  */
-void ClearDynoString(string * & the_string);
+void ClearDynoString(string *&the_string);
 
 /*
  * Count the number of alphabetic and numeric characters in a string and return
@@ -40,8 +41,8 @@ void ClearDynoString(string * & the_string);
  * @return unsigned int - Contains the length of the_string
  * @throw The message "NULL STRING REFERENCE" if the_string is NULL
  */
-unsigned int CountChars(string * theString, unsigned int & alpha,
-  unsigned int & num);
+unsigned int CountChars(string *theString, unsigned int &alpha,
+                        unsigned int &num);
 
 /*
  * Find a word inside of a string.
@@ -53,7 +54,7 @@ unsigned int CountChars(string * theString, unsigned int & alpha,
  * @return bool - True if the_word is found in the_string, else false
  * @throw The message "NULL STRING REFERENCE" if the_string is NULL
  */
-bool FindWord(string * the_string, string the_word);
+bool FindWord(string *the_string, string the_word);
 
 /*
  * Replace one word in a string with another word.
@@ -66,7 +67,7 @@ bool FindWord(string * the_string, string the_word);
  * @return bool - True if old_word was found and replaced, else return false
  * @throw The message "NULL STRING REFERENCE" if the_string is NULL
  */
-bool ReplaceWord(string * the_string, string old_word, string new_word);
+bool ReplaceWord(string *the_string, string old_word, string new_word);
 
 // For testing (DO NOT ALTER)
 #include <cctype>
@@ -75,13 +76,14 @@ bool ReplaceWord(string * the_string, string old_word, string new_word);
 
 void UnitTest();
 void Test(bool test, int line_number, string more_info = "", string yours = "!",
-  string actual = "!");
+          string actual = "!");
 void OutputFailedTests();
 unsigned int ut_passed = 0, ut_failed = 0, ut_total = 0, num_of_tests = 0;
-std::vector < int > failed_tests;
+std::vector<int> failed_tests;
 
 // Program Execution Starts Here
-int main() {
+int main()
+{
   // To test your code (DO NOT ALTER)
   UnitTest();
   // This ends program execution
@@ -89,82 +91,121 @@ int main() {
 }
 
 // CODE HERE -- FUNCTION DEFINITION
-string * MakeDynoString(string contents) {
-  string * result = new string;
-  * result = contents;
+string *MakeDynoString(string contents)
+{
+  string *result = new string;
+  *result = contents;
   return result;
 }
-void ClearDynoString(string * & the_string) {
-  
+void ClearDynoString(string *&the_string)
+{
+
   delete the_string;
   the_string = NULL;
 }
-unsigned int CountChars(string * theString, unsigned int & alpha,
-  unsigned int & num) {
-  if(theString== NULL){
+unsigned int CountChars(string *theString, unsigned int &alpha,
+                        unsigned int &num)
+{
+  if (theString == NULL)
+  {
     return 0;
-  }else{
-  alpha = 0;
-  num = 0;
-  for (unsigned int i = 0; i < theString -> length(); i++) {
-    if (isalpha(theString -> at(i))) {
-      alpha += 1;
-    } else if (isdigit(theString -> at(i))) {
-      num += 1;
-    }
   }
-  return theString -> length();
+  else
+  {
+    alpha = 0;
+    num = 0;
+    for (unsigned int i = 0; i < theString->length(); i++)
+    {
+      if (isalpha(theString->at(i)))
+      {
+        alpha += 1;
+      }
+      else if (isdigit(theString->at(i)))
+      {
+        num += 1;
+      }
+    }
+    return theString->length();
   }
 }
-bool FindWord(string * the_string, string the_word) {
-  if(the_string == NULL){
-    cout << "I think im empty";
-    throw "NULL STRING REFERENCE"; //not even the string Libary "find" puts up with this empty crap
+bool FindWord(string *the_string, string the_word)
+{
+  if (the_string == NULL)
+  {
+    throw "NULL STRING REFERENCE"; // not even the string Libary "find" puts up with this empty crap
     return false;
-  }else{
+  }
+  else
+  {
     return the_string->find(the_word) != std::string::npos;
   }
 }
-bool ReplaceWord(string * the_string, string old_word, string new_word) {
-  return t;
+bool ReplaceWord(string *the_string, string old_word, string new_word)
+{
+  if (FindWord(the_string, old_word))
+  {
+    string *after_old_word = new string;
+    int start_pos = the_string->find(old_word);
+    *after_old_word = the_string->substr(start_pos + old_word.length(), string::npos);
+    the_string->substr(0, start_pos);
+    *the_string = the_string->substr(0, start_pos);
+    *the_string += new_word;
+    *the_string += *after_old_word;
+    return false;
+  }
+  else
+  {
+    return false;
+  }
 }
 // For testing (DO NOT ALTER)
-void UnitTest() {
+void UnitTest()
+{
   cout << string(40, '-') << endl;
-  cout << "UNIT TEST:\n" << string(40, '-') << endl;
+  cout << "UNIT TEST:\n"
+       << string(40, '-') << endl;
   if (num_of_tests != 0)
     cout << "Total Number of Tests: " << num_of_tests << endl;
   string yours = "", actual = "";
   // Tests
-  string * my_string = 0;
+  string *my_string = 0;
   unsigned int alpha, num;
 
-  try {
+  try
+  {
     CountChars(my_string, alpha, num);
-  } catch (const char * e) {
+  }
+  catch (const char *e)
+  {
     Test(!strcmp(e, "NULL STRING REFERENCE"), __LINE__,
-      "CountChars() EXCEPTION HANDLING");
+         "CountChars() EXCEPTION HANDLING");
   }
 
-  try {
+  try
+  {
     FindWord(my_string, "hello");
-  } catch (const char * e) {
+  }
+  catch (const char *e)
+  {
     Test(!strcmp(e, "NULL STRING REFERENCE"), __LINE__,
-      "FindWord() EXCEPTION HANDLING");
+         "FindWord() EXCEPTION HANDLING");
   }
 
-  try {
+  try
+  {
     ReplaceWord(my_string, "hello", "goodbye");
-  } catch (const char * e) {
+  }
+  catch (const char *e)
+  {
     Test(!strcmp(e, "NULL STRING REFERENCE"), __LINE__,
-      "ReplaceWord() EXCEPTION HANDLING");
+         "ReplaceWord() EXCEPTION HANDLING");
   }
 
   my_string = MakeDynoString("123, abc; 456: hello. 0!");
   Test(my_string != NULL, __LINE__,
-    "MakeDynoString(\"123, abc; 456: hello. 0!\")");
+       "MakeDynoString(\"123, abc; 456: hello. 0!\")");
   Test(CountChars(my_string, alpha, num) == 24, __LINE__,
-    "CountChars() for Length");
+       "CountChars() for Length");
   Test(alpha == 8, __LINE__, "CountChars() for Alpha");
   Test(num == 7, __LINE__, "CountChars() for Numeric");
 
@@ -173,10 +214,10 @@ void UnitTest() {
 
   ReplaceWord(my_string, "hello", "goodbye");
 
-  Test( * my_string == "123, abc; 456: goodbye. 0!", __LINE__,
-    "ReplaceWord(my_string, \"hello\", \"goodbye\")");
+  Test(*my_string == "123, abc; 456: goodbye. 0!", __LINE__,
+       "ReplaceWord(my_string, \"hello\", \"goodbye\")");
   Test(ReplaceWord(my_string, "HELLO", "GOODBYE") == false, __LINE__,
-    "ReplaceWord(my_string, \"HELLO\", \"GOODBYE\")");
+       "ReplaceWord(my_string, \"HELLO\", \"GOODBYE\")");
 
   ClearDynoString(my_string);
   Test(my_string == NULL, __LINE__, "ClearDynoString(my_string");
@@ -187,25 +228,31 @@ void UnitTest() {
   cout << string(40, '-') << endl;
   cout << "END OF UNIT TEST!\n";
   cout << string(40, '-') << endl;
-  cout << "Be sure to run 'make style' to check for any style errors.\n" <<
-    "Please note that 'make style' does NOT check variable names or" <<
-    " indentation" << endl << endl;
+  cout << "Be sure to run 'make style' to check for any style errors.\n"
+       << "Please note that 'make style' does NOT check variable names or"
+       << " indentation" << endl
+       << endl;
 }
 
 // For testing (DO NOT ALTER)
 void Test(bool test, int line_number, string more_info, string yours,
-  string actual) {
+          string actual)
+{
   ut_total++;
-  if (test) {
+  if (test)
+  {
     cout << "PASSED TEST ";
     ut_passed++;
-  } else {
+  }
+  else
+  {
     cout << "FAILED TEST ";
     ut_failed++;
     failed_tests.push_back(ut_total);
   }
   cout << ut_total << " " << more_info << "!" << endl;
-  if (!test) {
+  if (!test)
+  {
     if (yours != "!")
       cout << "Yours:  \"" << yours << '"' << endl;
     if (actual != "!")
@@ -214,8 +261,10 @@ void Test(bool test, int line_number, string more_info, string yours,
   }
 }
 
-void OutputFailedTests() {
-  if (failed_tests.size()) {
+void OutputFailedTests()
+{
+  if (failed_tests.size())
+  {
     cout << "Failed test number(s): ";
     for (unsigned int i = 0; i < failed_tests.size() - 1; i++)
       cout << failed_tests.at(i) << ", ";
