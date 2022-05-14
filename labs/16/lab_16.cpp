@@ -1,6 +1,6 @@
 /*
  * Name        : lab_16.cpp
- * Author      : FILL IN
+ * Author      : Charles Class
  * Description : Working with a Dynamic Array in a Class
  */
 #include <iostream>
