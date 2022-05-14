@@ -20,13 +20,13 @@ public:
     ~SLList();
     // make a new list head with specified contents
     void InsertHead(int contents);
-    //remove the head node and set the next 
-    //  node as the new head.
+    // remove the head node and set the next
+    //   node as the new head.
     void RemoveHead();
-    //clear the entire list.
+    // clear the entire list.
     void Clear();
-    //get the size of the list.
+    // get the size of the list.
     unsigned int size() const;
-    //output list as a string
+    // output list as a string
     std::string ToString() const;
 };
