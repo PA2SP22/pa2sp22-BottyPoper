@@ -7,6 +7,7 @@
 SLList::SLList()
 {
     head_ = NULL;
+    tail_ = NULL;
     size_ = 0;
 }
 SLList::~SLList()
@@ -18,6 +19,7 @@ void SLList::InsertHead(int contents)
     if (head_ == NULL)
     {
         head_ = new SLNode(contents);
+        tail_ = head_;
     }
     else
     {
@@ -29,10 +31,18 @@ void SLList::InsertHead(int contents)
 }
 void SLList::InsertTail(int contents)
 {
-    SLNode *temp = new SLNode(contents);
-    tail_->set_next_node(temp);
-    tail_=temp;
-    tail_->set_next_node(NULL);
+    if (head_ == NULL)
+    {
+        InsertHead(contents);
+    }
+    else
+    {
+        SLNode *temp = new SLNode(contents);
+        tail_->set_next_node(temp);
+        tail_ = temp;
+        tail_->set_next_node(NULL);
+        size_++;
+    }
 }
 void SLList::RemoveHead()
 {
@@ -42,6 +52,30 @@ void SLList::RemoveHead()
         delete head_;
         head_ = temp;
         size_--;
+        if (size_ == 0)
+        {
+            tail_ = NULL;
+        }
+    }
+}
+void SLList::RemoveTail()
+{
+    if (size_ > 0)
+    {
+        SLNode *temp = head_;
+        if (size_ == 1)
+        {
+            delete tail_;
+            head_=NULL;
+            tail_=NULL;
+        }
+        while (temp->next_node() != tail_)
+        {
+            temp = temp->next_node();
+        }
+        delete tail_;
+        size_--;
+        tail_ = temp;
     }
 }
 void SLList::Clear()
@@ -59,11 +93,25 @@ void SLList::Clear()
 }
 int SLList::GetHead() const
 {
-    return head_->contents();
+    if (head_ == NULL)
+    {
+        return 0;
+    }
+    else
+    {
+        return head_->contents();
+    }
 }
 int SLList::GetTail() const
 {
-    return tail_->contents();
+    if (head_ == NULL)
+    {
+        return 0;
+    }
+    else
+    {
+        return tail_->contents();
+    }
 }
 unsigned int SLList::size() const
 {
@@ -72,7 +120,6 @@ unsigned int SLList::size() const
 std::string SLList::ToString() const
 {
     std::stringstream output;
-    std::cout << size_ << std::endl;
     if (size_ != 0)
     {
         SLNode *temp = head_;
