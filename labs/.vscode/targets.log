@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat May 14 14:00:19 2022
+# Make data base, printed on Mon May 16 19:53:52 2022
 
 # Variables
 
@@ -79,7 +79,7 @@ PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/charles-System-Product-Name:@/tmp/.ICE-unix/1199,unix/charles-System-Product-Name:/tmp/.ICE-unix/1199
+SESSION_MANAGER = local/charles-System-Product-Name:@/tmp/.ICE-unix/1245,unix/charles-System-Product-Name:/tmp/.ICE-unix/1245
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -97,7 +97,7 @@ XDG_SESSION_DESKTOP = cinnamon
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 1848
+GIO_LAUNCHED_DESKTOP_FILE_PID = 7241
 # automatic
 %F = $(notdir $%)
 # environment
@@ -113,7 +113,7 @@ QT_QPA_PLATFORMTHEME = qt5ct
 # environment
 XDG_SEAT = seat0
 # environment
-SSH_AGENT_PID = 1268
+SSH_AGENT_PID = 1314
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = X-Cinnamon
 # environment
@@ -125,7 +125,7 @@ HOME = /home/charles
 # environment
 LESSCLOSE = /usr/bin/lesspipe %s %s
 # environment
-VSCODE_CODE_CACHE_PATH = /home/charles/.config/Code/CachedData/57fd6d0195bb9b9d1b49f6da5db789060795de47
+VSCODE_CODE_CACHE_PATH = /home/charles/.config/Code/CachedData/da15b6fd3ef856477bf6f4fb29ba1b7af717770d
 # environment
 LOGNAME = charles
 # environment
@@ -147,7 +147,7 @@ MAKECMDGOALS := all
 # environment
 SHLVL = 0
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-947a87a0-e52b-40da-b53f-a01b0540768c.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-4b95a4e7-8f02-4bbe-b565-9f744164aba2.sock
 # environment
 XDG_SESSION_ID = c2
 # environment
@@ -169,7 +169,7 @@ LANGUAGE = en_US
 # environment
 XDG_SEAT_PATH = /org/freedesktop/DisplayManager/Seat0
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-2990f31a-1.67.0-main.sock
+VSCODE_IPC_HOOK = /run/user/1000/vscode-2990f31a-1.67.1-main.sock
 # makefile
 MAKEFLAGS = pqrR
 # environment
@@ -209,7 +209,7 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LANG = C
 # environment
-VSCODE_PID = 1848
+VSCODE_PID = 7241
 # variable set hash-table stats:
 # Load=99/1024=10%, Rehash=0, Collisions=7/121=6%
 
@@ -277,6 +277,6 @@ GNUmakefile:
 # strcache performance: lookups = 41 / hit rate = 7%
 # hash-table stats:
 # Load=38/8192=0%, Rehash=0, Collisions=1/41=2%
-# Finished Make data base on Sat May 14 14:00:19 2022
+# Finished Make data base on Mon May 16 19:53:52 2022
 
  
