@@ -141,20 +141,12 @@ void DLList::RemoveFirst(int to_remove)
         DLNode *temp = head_;
         for (unsigned int i = 0; i < size_; i++)
         {
-            
 
             if (temp->GetContents() == to_remove)
             {
                 if (temp == head_)
                 {
-                    if (temp == tail_)
-                    {
-                        PopFront();
-                    }
-                    else
-                    {
-                        PopFront();
-                    }
+                    PopFront();
                 }
                 else
                 {
