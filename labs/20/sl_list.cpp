@@ -1,56 +1,54 @@
 /*
- * Name        : lab_18.cpp
+ * Name        : sl_list.cpp
  * Author      : Charles Class
  * Description : Linked List
  */
-#include "dl_list.h"
-DLList::DLList()
+#include "sl_list.h"
+SLList::SLList()
 {
     head_ = NULL;
     tail_ = NULL;
     size_ = 0;
 }
-DLList::~DLList()
+SLList::~SLList()
 {
     Clear();
 }
-void DLList::PushFront(int contents)
+void SLList::InsertHead(int contents)
 {
     if (head_ == NULL)
     {
-        head_ = new DLNode(contents);
+        head_ = new SLNode(contents);
         tail_ = head_;
     }
     else
     {
-        DLNode *temp = new DLNode(contents);
-        temp->SetNext(head_);
-        head_->SetPrevious(temp);
+        SLNode *temp = new SLNode(contents);
+        temp->set_next_node(head_);
         head_ = temp;
     }
     size_++;
 }
-void DLList::PushBack(int contents)
+void SLList::InsertTail(int contents)
 {
     if (tail_ == NULL)
     {
-        tail_ = new DLNode(contents);
+        tail_ = new SLNode(contents);
         head_ = tail_;
     }
     else
     {
-        DLNode *temp = new DLNode(contents);
-        temp->SetPrevious(tail_);
-        tail_->SetNext(temp);
+        SLNode *temp = new SLNode(contents);
+        tail_->set_next_node(temp);
         tail_ = temp;
     }
     size_++;
 }
-void DLList::PopFront()
+void SLList::RemoveHead()
 {
     if (size_ > 0)
     {
-        DLNode *temp = head_->GetNext();
+        SLNode *temp = head_->next_node();
         delete head_;
         head_ = temp;
         size_--;
@@ -58,46 +56,36 @@ void DLList::PopFront()
         {
             tail_ = NULL;
         }
-        else
-        {
-            temp->SetPrevious(NULL);
-        }
-    }
-    else
-    {
-        std::cerr << "List Empty";
     }
 }
-void DLList::PopBack()
+void SLList::RemoveTail()
 {
     if (size_ > 0)
     {
-        DLNode *temp = tail_->GetPrevious();
-        delete tail_;
-        tail_ = temp;
-        size_--;
-        if (size_ == 0)
+        SLNode *temp = head_;
+        if (size_ == 1)
         {
+            delete tail_;
             head_ = NULL;
+            tail_ = NULL;
         }
-        else
+        while (temp->next_node() != tail_)
         {
-            temp->SetNext(NULL);
+            temp = temp->next_node();
         }
-    }
-    else
-    {
-        std::cerr << "List Empty";
+        delete tail_;
+        size_--;
+        tail_ = temp;
     }
 }
-void DLList::Clear()
+void SLList::Clear()
 {
-    DLNode *current, *temp;
+    SLNode *current, *temp;
     current = head_;
     temp = head_;
     for (unsigned int i = 0; i < size_; i++)
     {
-        temp = temp->GetNext();
+        temp = temp->next_node();
         delete current;
         current = temp;
     }
@@ -105,163 +93,128 @@ void DLList::Clear()
     tail_ = NULL;
     size_ = 0;
 }
-int DLList::GetFront() const
+int SLList::GetHead() const
 {
     if (head_ == NULL)
     {
-        std::cerr << "List Empty";
         return 0;
     }
     else
     {
-        return head_->GetContents();
+        return head_->contents();
     }
 }
-int DLList::GetBack() const
+int SLList::GetTail() const
 {
     if (head_ == NULL)
     {
-        std::cerr << "List Empty";
+
         return 0;
     }
     else
     {
-        return tail_->GetContents();
+        return tail_->contents();
     }
 }
-void DLList::RemoveFirst(int to_remove)
+void SLList::Insert(int to_insert)
 {
     if (size_ == 0)
     {
-        std::cerr << "Not Found";
-        return;
+        InsertHead(to_insert);
     }
     else
     {
-        DLNode *temp = head_;
-        for (unsigned int i = 0; i < size_; i++)
+        SLNode *behind_temp;
+        for (SLNode *temp = head_; temp != NULL; temp = temp->next_node())
         {
             
-
-            if (temp->GetContents() == to_remove)
+            if (temp->contents() > to_insert)
             {
                 if (temp == head_)
                 {
-                    if (temp == tail_)
-                    {
-                        PopFront();
-                    }
-                    else
-                    {
-                        PopFront();
-                    }
+                    InsertHead(to_insert);
+                    return;
+                }
+                else
+                {
+                    SLNode *to_add = new SLNode(to_insert);
+                    behind_temp->set_next_node(to_add);
+                    to_add->set_next_node(temp);
+                    size_++;
+                    return;
+                }
+            }
+            behind_temp=temp;
+        }
+        // if at end of list
+        InsertTail(to_insert);
+    }
+}
+bool SLList::RemoveFirstOccurence(int to_remove)
+{
+    if (size_ == 0)
+    {
+
+        return false;
+    }
+    else
+    {
+        SLNode *temp = head_;
+        SLNode *behindtemp;
+        for (unsigned int i = 0; i < size_; i++)
+        {
+
+            if (temp->contents() == to_remove)
+            {
+                if (temp == head_)
+                {
+                    RemoveHead();
                 }
                 else
                 {
                     if (temp == tail_)
                     {
-                        PopBack();
+                        RemoveTail();
                     }
                     else
                     {
-                        temp->GetPrevious()->SetNext(temp->GetNext());
-                        temp->GetNext()->SetPrevious(temp->GetPrevious());
+                        behindtemp->set_next_node(temp->next_node());
                         delete temp;
                         size_--;
                     }
                 }
-                return;
+                return true;
             }
-            temp = temp->GetNext();
+            behindtemp = temp;
+            temp = temp->next_node();
         }
-        std::cerr << "Not Found";
+
+        return false;
     }
 }
-void DLList::RemoveAll(int to_remove)
-{
-    if (!Exists(to_remove))
-    {
-        std::cerr << "Not Found";
-        return;
-    }
-    while (true)
-    {
-        if (Exists(to_remove))
-        {
-            RemoveFirst(to_remove);
-        }
-        else
-        {
-            return;
-        }
-    }
-}
-bool DLList::Exists(int to_find)
-{
-    DLNode *temp = head_;
-    for (unsigned int i = 0; i < size_; i++)
-    {
-        if (temp->GetContents() == to_find)
-        {
-            return true;
-        }
-        temp = temp->GetNext();
-    }
-    return false;
-}
-unsigned int DLList::GetSize() const
+unsigned int SLList::size() const
 {
     return size_;
 }
-std::string DLList::ToStringForwards() const
+std::string SLList::ToString() const
 {
     std::stringstream output;
     if (size_ != 0)
     {
-        DLNode *temp = head_;
-        output << head_->GetContents();
-        if (head_->GetNext() != NULL)
+        SLNode *temp = head_;
+        output << head_->contents();
+        if (head_->next_node() != NULL)
         {
-            temp = head_->GetNext();
+            temp = head_->next_node();
         }
         for (unsigned int i = 1; i < size_; i++)
         {
-            output << ", " << temp->GetContents();
-            if (temp->GetNext() != NULL)
+            output << ", " << temp->contents();
+            if (temp->next_node() != NULL)
             {
-                temp = temp->GetNext();
+                temp = temp->next_node();
             }
         }
-    }
-    else
-    {
-        std::cerr << "List Empty";
-    }
-    return output.str();
-}
-std::string DLList::ToStringBackwards() const
-{
-    std::stringstream output;
-    if (size_ != 0)
-    {
-        DLNode *temp = tail_;
-        output << tail_->GetContents();
-        if (tail_->GetPrevious() != NULL)
-        {
-            temp = tail_->GetPrevious();
-        }
-        for (unsigned int i = 1; i < size_; i++)
-        {
-            output << ", " << temp->GetContents();
-            if (temp->GetPrevious() != NULL)
-            {
-                temp = temp->GetPrevious();
-            }
-        }
-    }
-    else
-    {
-        std::cerr << "List Empty";
     }
     return output.str();
 }

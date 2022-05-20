@@ -1,6 +1,6 @@
 /*
- * Name        : lab_18.cpp
- * Author      : Charles Class
+ * Name        : sl_list.cpp
+ * Author      : Charles Clarke
  * Description : Linked List
  */
 #include "sl_list.h"

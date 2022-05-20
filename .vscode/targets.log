@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon May 16 19:53:52 2022
+# Make data base, printed on Fri May 20 10:40:07 2022
 
 # Variables
 
@@ -79,7 +79,7 @@ PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/charles-System-Product-Name:@/tmp/.ICE-unix/1245,unix/charles-System-Product-Name:/tmp/.ICE-unix/1245
+SESSION_MANAGER = local/charles-System-Product-Name:@/tmp/.ICE-unix/1306,unix/charles-System-Product-Name:/tmp/.ICE-unix/1306
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -97,7 +97,7 @@ XDG_SESSION_DESKTOP = cinnamon
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 7241
+GIO_LAUNCHED_DESKTOP_FILE_PID = 57368
 # automatic
 %F = $(notdir $%)
 # environment
@@ -113,7 +113,7 @@ QT_QPA_PLATFORMTHEME = qt5ct
 # environment
 XDG_SEAT = seat0
 # environment
-SSH_AGENT_PID = 1314
+SSH_AGENT_PID = 1375
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = X-Cinnamon
 # environment
@@ -129,7 +129,7 @@ VSCODE_CODE_CACHE_PATH = /home/charles/.config/Code/CachedData/da15b6fd3ef856477
 # environment
 LOGNAME = charles
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # environment
@@ -147,7 +147,7 @@ MAKECMDGOALS := all
 # environment
 SHLVL = 0
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-b02b205e-1371-4a62-9e71-4dc9d7da6966.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-7ab93404-1777-4199-8559-368537d25eea.sock
 # environment
 XDG_SESSION_ID = c2
 # environment
@@ -209,7 +209,7 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LANG = C
 # environment
-VSCODE_PID = 7241
+VSCODE_PID = 57368
 # variable set hash-table stats:
 # Load=99/1024=10%, Rehash=0, Collisions=7/121=6%
 
@@ -219,9 +219,9 @@ VSCODE_PID = 7241
 
 # Directories
 
-# . (device 57, inode 6031988): 10 files, no impossibilities.
+# . (device 56, inode 6031988): 11 files, no impossibilities.
 
-# 10 files, no impossibilities in 1 directories.
+# 11 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -271,12 +271,12 @@ GNUmakefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 18 / storage = 171 B / avg = 9 B
-# current buf: size = 8162 B / used = 171 B / count = 18 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 19 / storage = 179 B / avg = 9 B
+# current buf: size = 8162 B / used = 179 B / count = 19 / avg = 9 B
 
-# strcache performance: lookups = 21 / hit rate = 14%
+# strcache performance: lookups = 22 / hit rate = 13%
 # hash-table stats:
-# Load=18/8192=0%, Rehash=0, Collisions=1/21=5%
-# Finished Make data base on Mon May 16 19:53:52 2022
+# Load=19/8192=0%, Rehash=0, Collisions=1/22=5%
+# Finished Make data base on Fri May 20 10:40:07 2022
 
  

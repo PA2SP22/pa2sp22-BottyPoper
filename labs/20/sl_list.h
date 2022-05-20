@@ -1,5 +1,5 @@
 /*
- * Name        : sl_list.cpp
+ * Name        : sl_list.h
  * Author      : Charles Clarke
  * Description : Linked List
  */
@@ -18,36 +18,33 @@ private:
     SLNode *tail_;
     // size of Linked list
     unsigned int size_;
-
-public:
-    SLList();
-    ~SLList();
     // make a new list head with specified contents
     void InsertHead(int contents);
     // add a node to the end of the list
-    void PushBack(int contents);
-    // remove the head node and set the next
-    //   node as the new head.
-    void PopFront();
+    void InsertTail(int contents);
+    // remove the head node and
+    void RemoveHead();
     // remove the last node
-    void PopBack();
+    void RemoveTail();
+public:
+    SLList();
+    ~SLList();
     // clear the entire list.
     void Clear();
     // returns the head node
-    int GetFront() const;
+    int GetHead() const;
     // returns the tail node
-    int GetBack() const;
+    int GetTail() const;
+    /*
+    Creates a new SLNode with the contents of the parameter and
+	inserts it into the correct position in the list.
+    */
+    void Insert(int);
     // Remove First node of given value
-    void RemoveFirst(int);
-    // Remove All nodes of a given value
-    void RemoveAll(int);
-    // find if a value exist on list
-    bool Exists(int);
+    bool RemoveFirstOccurence(int);
     // get the size of the list.
-    unsigned int GetSize() const;
+    unsigned int size() const;
     // output list as a string
-    std::string ToStringForwards() const;
-    // output list as a string but backwards
-    std::string ToStringBackwards() const;
+    std::string ToString() const;
 };
 #endif
