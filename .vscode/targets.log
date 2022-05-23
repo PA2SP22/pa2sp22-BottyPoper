@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri May 20 10:40:07 2022
+# Make data base, printed on Sat May 21 14:46:10 2022
 
 # Variables
 
@@ -97,7 +97,7 @@ XDG_SESSION_DESKTOP = cinnamon
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 57368
+GIO_LAUNCHED_DESKTOP_FILE_PID = 225245
 # automatic
 %F = $(notdir $%)
 # environment
@@ -125,11 +125,11 @@ HOME = /home/charles
 # environment
 LESSCLOSE = /usr/bin/lesspipe %s %s
 # environment
-VSCODE_CODE_CACHE_PATH = /home/charles/.config/Code/CachedData/da15b6fd3ef856477bf6f4fb29ba1b7af717770d
+VSCODE_CODE_CACHE_PATH = /home/charles/.config/Code/CachedData/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5
 # environment
 LOGNAME = charles
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # environment
@@ -147,7 +147,7 @@ MAKECMDGOALS := all
 # environment
 SHLVL = 0
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-7ab93404-1777-4199-8559-368537d25eea.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-8a8f73ff-8e89-4112-8d32-e74891c1d401.sock
 # environment
 XDG_SESSION_ID = c2
 # environment
@@ -169,7 +169,7 @@ LANGUAGE = en_US
 # environment
 XDG_SEAT_PATH = /org/freedesktop/DisplayManager/Seat0
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-2990f31a-1.67.1-main.sock
+VSCODE_IPC_HOOK = /run/user/1000/vscode-2990f31a-1.67.2-main.sock
 # makefile
 MAKEFLAGS = pqrR
 # environment
@@ -209,7 +209,7 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LANG = C
 # environment
-VSCODE_PID = 57368
+VSCODE_PID = 225245
 # variable set hash-table stats:
 # Load=99/1024=10%, Rehash=0, Collisions=7/121=6%
 
@@ -277,6 +277,6 @@ GNUmakefile:
 # strcache performance: lookups = 22 / hit rate = 13%
 # hash-table stats:
 # Load=19/8192=0%, Rehash=0, Collisions=1/22=5%
-# Finished Make data base on Fri May 20 10:40:07 2022
+# Finished Make data base on Sat May 21 14:46:10 2022
 
  
