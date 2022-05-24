@@ -10,10 +10,10 @@
 #include <sstream>
 #include <cstring>
 using std::cout;
-using std::ifstream;
 using std::endl;
-using std::string;
+using std::ifstream;
 using std::map;
+using std::string;
 using std::stringstream;
 
 /*
@@ -45,13 +45,14 @@ void OnError();
 void UnitTest(int argc, char *argv[]);
 void Test(bool test, int line_number, string more_info = "", string yours = "!",
           string actual = "!");
-bool CheckArgs(int argc, char* argv[]);
+bool CheckArgs(int argc, char *argv[]);
 void OutputFailedTests();
 unsigned int ut_passed = 0, ut_failed = 0, ut_total = 0, num_of_tests = 6;
 std::vector<int> failed_tests;
 
 // Program Execution Starts Here
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[])
+{
   // To test your code (DO NOT ALTER)
   UnitTest(argc, argv);
   // This ends program execution
@@ -61,10 +62,13 @@ int main(int argc, char* argv[]) {
 // CODE HERE -- FUNCTION DEFINITION
 
 // For testing (DO NOT ALTER)
-void UnitTest(int argc, char *argv[]) {
-  if (argc > 1 && strcmp(argv[1], "teacher") == 0 && CheckArgs(argc, argv)) {
+void UnitTest(int argc, char *argv[])
+{
+  if (argc > 1 && strcmp(argv[1], "teacher") == 0 && CheckArgs(argc, argv))
+  {
     cout << string(40, '-') << endl;
-    cout << "UNIT TEST:\n" << string(40, '-') << endl;
+    cout << "UNIT TEST:\n"
+         << string(40, '-') << endl;
     if (num_of_tests != 0)
       cout << "Total Number of Tests: " << num_of_tests << endl;
     string yours = "", actual = "";
@@ -90,8 +94,11 @@ void UnitTest(int argc, char *argv[]) {
     cout << string(40, '-') << endl;
     cout << "Be sure to run 'make style' to check for any style errors.\n"
          << "Please note that 'make style' does NOT check variable names or"
-         << " indentation" << endl << endl;
-  } else {
+         << " indentation" << endl
+         << endl;
+  }
+  else
+  {
     cout << "\nRun program with the following argument list:\n";
     cout << "\n\t\"teacher 10 20 30 40 50 60\"\n";
     cout << "\nto run the UNIT TEST.\n\n";
@@ -100,18 +107,23 @@ void UnitTest(int argc, char *argv[]) {
 
 // For testing (DO NOT ALTER)
 void Test(bool test, int line_number, string more_info, string yours,
-          string actual) {
+          string actual)
+{
   ut_total++;
-  if (test) {
+  if (test)
+  {
     cout << "PASSED TEST ";
     ut_passed++;
-  } else {
+  }
+  else
+  {
     cout << "FAILED TEST ";
     ut_failed++;
     failed_tests.push_back(ut_total);
   }
   cout << ut_total << " " << more_info << "!" << endl;
-  if (!test) {
+  if (!test)
+  {
     if (yours != "!")
       cout << "Yours:  \"" << yours << '"' << endl;
     if (actual != "!")
@@ -120,8 +132,10 @@ void Test(bool test, int line_number, string more_info, string yours,
   }
 }
 
-void OutputFailedTests() {
-  if (failed_tests.size()) {
+void OutputFailedTests()
+{
+  if (failed_tests.size())
+  {
     cout << "Failed test number(s): ";
     for (unsigned int i = 0; i < failed_tests.size() - 1; i++)
       cout << failed_tests.at(i) << ", ";
@@ -129,12 +143,15 @@ void OutputFailedTests() {
   }
 }
 
-bool CheckArgs(int argc, char* argv[]) {
-  if (argc == 8) {
+bool CheckArgs(int argc, char *argv[])
+{
+  if (argc == 8)
+  {
     // convert the argv[2] to argv[7] contents to integers
     int *temps = new int[6];
     stringstream ss;
-    for (int i = 0, j = 2; i < 6; i++, j++) {
+    for (int i = 0, j = 2; i < 6; i++, j++)
+    {
       ss.str(argv[j]);
       ss >> temps[i];
       ss.clear();
@@ -142,7 +159,8 @@ bool CheckArgs(int argc, char* argv[]) {
 
     // check to see that argv[2] to argv[7] match the expected launch
     // UNIT TEST values
-    for (int i = 0, j = 10; i < 6; i++, j += 10) {
+    for (int i = 0, j = 10; i < 6; i++, j += 10)
+    {
       if (temps[i] != j)
         return false;
     }
@@ -154,26 +172,64 @@ bool CheckArgs(int argc, char* argv[]) {
   return false;
 }
 
-void OnTen() {
+void OnTen()
+{
   counters[10]++;
 }
 
-void OnTwenty() {
+void OnTwenty()
+{
   counters[20]++;
 }
 
-void OnThirty() {
+void OnThirty()
+{
   counters[30]++;
 }
 
-void OnForty() {
+void OnForty()
+{
   counters[40]++;
 }
 
-void OnFifty() {
+void OnFifty()
+{
   counters[50]++;
 }
 
-void OnError() {
+void OnError()
+{
+
   counters[99]++;
+  cout << counters[99] << endl;
+}
+
+void ProcessArguments(int argc, char *argv[])
+{
+  for (int i = 1; i < argc; i++)
+  {
+    char current = argv[i][0];
+    cout << current  << argv[i][1] << endl;
+    switch (current)
+    {
+    case '1':
+      OnTen();
+      break;
+    case '2':
+      OnTwenty();
+      break;
+    case '3':
+      OnThirty();
+      break;
+    case '4':
+      OnForty();
+      break;
+    case '5':
+      OnFifty();
+      break;
+    default:
+      OnError();
+      break;
+    }
+  }
 }
