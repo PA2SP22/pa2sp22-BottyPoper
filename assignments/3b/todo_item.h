@@ -3,8 +3,8 @@
  * Author      : Charles Clarke
  * Description : header for todo_item
  */
-#ifndef item
-#define item
+#ifndef list_thing
+#define list_thing
 #include <string>
 
 #include <sstream>
@@ -22,10 +22,10 @@ class TodoItem
 
 public:
   // Constructor:
-  TodoItem(string description, int priority, bool completed);
-  TodoItem(string description, int priority);
   TodoItem(string description);
-  // Accessors:
+  TodoItem(string description, int priority);
+  TodoItem(string description, int priority, bool completed);
+
   string description();
   int priority();
   bool completed();

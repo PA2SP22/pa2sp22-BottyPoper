@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat May 21 14:46:10 2022
+# Make data base, printed on Tue May 24 06:47:41 2022
 
 # Variables
 
@@ -79,7 +79,7 @@ PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/charles-System-Product-Name:@/tmp/.ICE-unix/1306,unix/charles-System-Product-Name:/tmp/.ICE-unix/1306
+SESSION_MANAGER = local/charles-System-Product-Name:@/tmp/.ICE-unix/1195,unix/charles-System-Product-Name:/tmp/.ICE-unix/1195
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -97,7 +97,7 @@ XDG_SESSION_DESKTOP = cinnamon
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 225245
+GIO_LAUNCHED_DESKTOP_FILE_PID = 19524
 # automatic
 %F = $(notdir $%)
 # environment
@@ -113,7 +113,7 @@ QT_QPA_PLATFORMTHEME = qt5ct
 # environment
 XDG_SEAT = seat0
 # environment
-SSH_AGENT_PID = 1375
+SSH_AGENT_PID = 1264
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = X-Cinnamon
 # environment
@@ -147,7 +147,7 @@ MAKECMDGOALS := all
 # environment
 SHLVL = 0
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-8a8f73ff-8e89-4112-8d32-e74891c1d401.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-13149cc3-4a33-472e-b11d-799460b359e3.sock
 # environment
 XDG_SESSION_ID = c2
 # environment
@@ -209,7 +209,7 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LANG = C
 # environment
-VSCODE_PID = 225245
+VSCODE_PID = 19524
 # variable set hash-table stats:
 # Load=99/1024=10%, Rehash=0, Collisions=7/121=6%
 
@@ -219,7 +219,7 @@ VSCODE_PID = 225245
 
 # Directories
 
-# . (device 56, inode 6031988): 11 files, no impossibilities.
+# . (device 57, inode 6031988): 11 files, no impossibilities.
 
 # 11 files, no impossibilities in 1 directories.
 
@@ -277,6 +277,6 @@ GNUmakefile:
 # strcache performance: lookups = 22 / hit rate = 13%
 # hash-table stats:
 # Load=19/8192=0%, Rehash=0, Collisions=1/22=5%
-# Finished Make data base on Sat May 21 14:46:10 2022
+# Finished Make data base on Tue May 24 06:47:41 2022
 
  

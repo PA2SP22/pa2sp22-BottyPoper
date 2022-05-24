@@ -4,8 +4,8 @@
  * Description : Header for todo_list.cpp
  */
 
-#ifndef list
-#define list
+#ifndef list_thing
+#define list_thing
 #include <iostream>
 #include "todo_item.h"
 class TodoList
