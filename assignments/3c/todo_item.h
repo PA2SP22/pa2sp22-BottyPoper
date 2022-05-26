@@ -5,14 +5,12 @@
  */
 #ifndef foobar
 #define foobar
-#include <string>
-
 #include <sstream>
+#include <string>
 
 using std::string;
 // using std::sstream;
-class TodoItem
-{
+class TodoItem {
   // Private Variables
   string description_;
   int priority_;
@@ -20,7 +18,7 @@ class TodoItem
   // Private Member Function
   string Scrub(string toscrub);
 
-public:
+ public:
   // Constructor:
   TodoItem(string description, int priority, bool completed);
   TodoItem(string description, int priority);

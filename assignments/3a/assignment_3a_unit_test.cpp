@@ -8,6 +8,7 @@
 #include <iostream>
 #include <sstream>
 #include <streambuf>
+
 #include "todo_item.h"
 using std::cout;
 using std::endl;
@@ -19,8 +20,7 @@ using std::stringstream;
 #include <vector>
 void UnitTest();
 template <typename T>
-void Test(bool test, string more_info = "", T yours = T(),
-          T expected = T());
+void Test(bool test, string more_info = "", T yours = T(), T expected = T());
 void OutputFailedTests();
 unsigned int ut_passed = 0, ut_failed = 0, ut_total = 0, num_of_tests = 18;
 std::vector<int> failed_tests;
@@ -35,7 +35,6 @@ int main() {
   // This ends program execution
   return 0;
 }
-
 
 // For testing (DO NOT ALTER)
 void UnitTest() {
@@ -104,7 +103,8 @@ void UnitTest() {
   cout << string(40, '-') << endl;
   cout << "Be sure to run 'make style' to check for any style errors.\n"
        << "Please note that 'make style' does NOT check variable names or"
-       << " indentation" << endl << endl;
+       << " indentation" << endl
+       << endl;
 }
 
 // For testing (DO NOT ALTER)
@@ -121,8 +121,8 @@ void Test(bool test, string more_info, T yours, T expected) {
   }
   cout << ut_total << " " << more_info << "!" << endl;
   if (!test && yours != T()) {
-      cout << "Expected: " << std::boolalpha << expected << endl;
-      cout << "Yours   : " << std::boolalpha << yours  << endl << endl;
+    cout << "Expected: " << std::boolalpha << expected << endl;
+    cout << "Yours   : " << std::boolalpha << yours << endl << endl;
   }
 }
 
@@ -134,4 +134,3 @@ void OutputFailedTests() {
     cout << failed_tests.at(failed_tests.size() - 1) << endl;
   }
 }
-

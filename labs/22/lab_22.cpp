@@ -7,6 +7,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <cmath>
 using std::cout;
 using std::endl;
 using std::string;
@@ -75,7 +76,9 @@ unsigned int ut_passed = 0, ut_failed = 0, ut_total = 0, num_of_tests = 18;
 std::vector<int> failed_tests;
 
 // Program Execution Starts Here
-int main() {
+int main()
+{
+  cout << Factorial(2);
   // To test your code (DO NOT ALTER)
   UnitTest();
   // This ends program execution
@@ -83,12 +86,75 @@ int main() {
 }
 
 // CODE FUNCTION DEFINITIONS HERE
-
+unsigned int Factorial(unsigned int value)
+{
+  if (value == 0 || value == 1)
+  {
+    return 1;
+  }
+  else
+  {
+    return Factorial(value - 1) * value;
+  }
+}
+unsigned int Fibonacci(unsigned int fib_value)
+{
+  float golden_ratio = 1.6180339;
+  if (fib_value == 1 || fib_value == 2)
+  {
+    return 1;
+  }
+  return std::round(static_cast<float>(Fibonacci(fib_value - 1)) * golden_ratio);
+}
+bool WordIsPalindrome(string word)
+{
+  if (word.size() == 0 || word.size() == 1)
+  {
+    return true;
+  }
+  else if (word.front() == word.back())
+  {
+    return WordIsPalindrome(word.substr(1, word.size() - 2));
+  }
+  else
+  {
+    return false;
+  }
+}
+string ArrayForwardsAsString(int array[], unsigned int start,
+                             unsigned int size)
+{
+  stringstream output;
+  if (start < size)
+  {
+    output << array[start] << " " << ArrayForwardsAsString(array, start + 1, size);
+  }
+  return output.str();
+}
+string ArrayBackwardsAsString(int array[], unsigned int start, unsigned int size)
+{
+  stringstream output;
+  if (start > 0 && start < size)
+  {
+    output << array[start] << " " << ArrayBackwardsAsString(array, start - 1, size);
+    return output.str();
+  }
+  else if (start == 0 && start < size)
+  {
+    return output.str();
+  }
+  else
+  {
+    return "";
+  }
+}
 
 // For testing (DO NOT ALTER)
-void UnitTest() {
+void UnitTest()
+{
   cout << string(40, '-') << endl;
-  cout << "UNIT TEST:\n" << string(40, '-') << endl;
+  cout << "UNIT TEST:\n"
+       << string(40, '-') << endl;
   if (num_of_tests != 0)
     cout << "Total Number of Tests: " << num_of_tests << endl;
   string yours = "", actual = "";
@@ -109,7 +175,7 @@ void UnitTest() {
   Test(WordIsPalindrome("baseball") == false, __LINE__,
        "WordIsPalindrome(\"baseball\")");
 
-  int numbers[5] = { 5, 10, 15, 20, 25 };
+  int numbers[5] = {5, 10, 15, 20, 25};
   yours = ArrayForwardsAsString(numbers, 0, 5);
   actual = "5 10 15 20 25 ";
   Test(yours == actual, __LINE__, "ArrayForwardsAsString(numbers, 0, 5)", yours,
@@ -143,23 +209,29 @@ void UnitTest() {
   cout << string(40, '-') << endl;
   cout << "Be sure to run 'make style' to check for any style errors.\n"
        << "Please note that 'make style' does NOT check variable names or"
-       << " indentation" << endl << endl;
+       << " indentation" << endl
+       << endl;
 }
 
 // For testing (DO NOT ALTER)
 void Test(bool test, int line_number, string more_info, string yours,
-          string actual) {
+          string actual)
+{
   ut_total++;
-  if (test) {
+  if (test)
+  {
     cout << "PASSED TEST ";
     ut_passed++;
-  } else {
+  }
+  else
+  {
     cout << "FAILED TEST ";
     ut_failed++;
     failed_tests.push_back(ut_total);
   }
   cout << ut_total << " " << more_info << "!" << endl;
-  if (!test) {
+  if (!test)
+  {
     if (yours != "!")
       cout << "Yours:  \"" << yours << '"' << endl;
     if (actual != "!")
@@ -168,8 +240,10 @@ void Test(bool test, int line_number, string more_info, string yours,
   }
 }
 
-void OutputFailedTests() {
-  if (failed_tests.size()) {
+void OutputFailedTests()
+{
+  if (failed_tests.size())
+  {
     cout << "Failed test number(s): ";
     for (unsigned int i = 0; i < failed_tests.size() - 1; i++)
       cout << failed_tests.at(i) << ", ";
