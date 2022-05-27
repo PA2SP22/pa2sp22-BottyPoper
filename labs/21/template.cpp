@@ -1,11 +1,12 @@
 /*
  * Name        : template.cpp
- * Author      : FILL IN
+ * Author      : Charles Clarke
  * Description : Various functions using templates. Please note you can just
  *               write the definitions in here. No need for prototypes.
  */
-#include <string>
+#include <iostream>
 #include <sstream>
+#include <string>
 using std::string;
 using std::stringstream;
 
@@ -24,8 +25,32 @@ using std::stringstream;
  * @return string - A string containing the contents of values separated by the
  *                  specified separator character
  */
-
-
+template <typename T>
+string PrepareForDisplay(T array[], unsigned int size, char separator) {
+  if (size > 0) {
+    stringstream output;
+    output << array[0];
+    for (unsigned int i = 1; i < size; i++) {
+      output << separator << array[i];
+    }
+    return output.str();
+  } else {
+    return "";
+  }
+}
+template <typename T>
+string PrepareForDisplay(T array[], unsigned int size) {
+  if (size > 0) {
+    stringstream output;
+    output << array[0];
+    for (unsigned int i = 1; i < size; i++) {
+      output << "," << array[i];
+    }
+    return output.str();
+  } else {
+    return "";
+  }
+}
 /*
  * Function Name: HasValue
  * Test to see if an array contains a specified value.
@@ -34,8 +59,17 @@ using std::stringstream;
  * @param T value_to_find - The value to search for within the array
  * @return bool - true if value is found in the array, otherwise false
  */
-
-
+template <typename T>
+bool HasValue(T array[], unsigned int size, T tofind) {
+  if (size > 0) {
+    for (unsigned int i = 0; i < size; i++) {
+      if (array[i] == tofind) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
 /*
  * Function Name: ValueAt
  * Return the value from an array at a specified index.
@@ -50,8 +84,16 @@ using std::stringstream;
  *               the type and sets error to true. To get a zero representation
  *               you can return T()
  */
-
-
+template <typename T>
+T ValueAt(T array[], unsigned int size, unsigned int index, bool &error) {
+  error = false;
+  if (index < size) {
+    return array[index];
+  } else {
+    error = true;
+    return T();
+  }
+}
 /*
  * Function Name: Sum
  * Return the "sum" of the values in the array. Your initial sum should be set
@@ -60,8 +102,14 @@ using std::stringstream;
  * @param unsigned int size - The size of the array
  * @return T - The sum of the values in the array
  */
-
-
+template <typename T>
+T Sum(T array[], unsigned int size) {
+  T output = T();
+  for (unsigned int i; i < size; i++) {
+    output += array[i];
+  }
+  return output;
+}
 /*
  * Function Name: SwapValues
  * Swap the positions of two values in an array. The two index values must be
@@ -72,4 +120,11 @@ using std::stringstream;
  * @param unsigned int index2 - The position of the second value to be swapped
  * @return bool - true if the swap was successful, otherwise false
  */
-
+template <typename T>
+bool SwapValues(T array[], unsigned int size, unsigned int index1,
+                unsigned int index2) {
+  if (index1 <= size && index2 <= size) {
+  } else {
+    return false;
+  }
+}
